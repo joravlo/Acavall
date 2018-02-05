@@ -1,0 +1,3 @@
+acavall_homepage:
+    path:     /
+    defaults: { _controller: AcavallBundle:Default:index }
