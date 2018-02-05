@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LogIn</title>
+    <link href="{{ asset('css/master.css')}}" rel="stylesheet">
+  </head>
+  <body>
+    <div class="contenido">
+
+    <div class="w3-bar w3-black">
+      <button class="w3-bar-item w3-button" onclick="openCity('login')">Log In</button>
+      <button class="w3-bar-item w3-button" onclick="openCity('signup')">Sign Up</button>
+    </div>
+
+    <div id="login" class="w3-container city">
+      <h4>Bienvenido de nuevo</h4>
+      <form>
+        <input type="text" name="Email" placeholder="Email" value="">
+        <input type="password" name="Contraseña" placeholder="Contraseña" value="">
+        <input type="submit" name="Enviar" class="enviar" value="Entrar">
+      </form>
+
+    </div>
+
+    <div id="signup" class="w3-container city" style="display:none">
+      <h4>Bienvenido a Acavall</h4>
+      <form>
+        <form>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <input type="text" placeholder="Nombre" class="form-control">
+      </div>
+      <div class="form-group col-md-6">
+        <input type="text" placeholder="Apellidos" class="form-control">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <input type="email" placeholder="Email" class="form-control">
+      </div>
+      <div class="form-group col-md-6">
+        <input type="password" placeholder="Contraseña" class="form-control">
+      </div>
+      <div class="form-group col-md-6">
+        <input type="text" placeholder="Telefono" class="form-control">
+      </div>
+    </div>
+    <input type="submit" value="Registrarse" class="enviar">
+</form>
+      </form>
+    </div>
+    </div>
+    <script>
+    function openCity(cityName) {
+        var i;
+        var x = document.getElementsByClassName("city");
+        for (i = 0; i < x.length; i++) {
+           x[i].style.display = "none";
+        }
+        document.getElementById(cityName).style.display = "block";
+    }
+    </script>
+  </body>
+</html>
