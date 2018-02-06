@@ -1,12 +1,9 @@
 body {
-  background-image: url('../img/fondo2.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  height: 100%;
-  width: 95%;
-  background-size: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  background: url('../img/fondo.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .contenido {
