@@ -6,6 +6,6 @@ acavall_login:
     path:     /login
     defaults: { _controller: AcavallBundle:Default:login }
 
-acavall_contrasena:
-    path:     /recordarcontrasena
-    defaults: { _controller: AcavallBundle:Default:recordar }
+acavall_password:
+    path:     /password
+    defaults: { _controller: AcavallBundle:Default:password }
