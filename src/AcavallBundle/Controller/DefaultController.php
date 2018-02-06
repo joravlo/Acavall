@@ -20,4 +20,9 @@ class DefaultController extends Controller
     {
         return $this->render('default/password.html.twig');
     }
+
+    public function eventAction()
+    {
+        return $this->render('default/event.html.twig');
+    }
 }
