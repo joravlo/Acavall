@@ -15,4 +15,9 @@ class DefaultController extends Controller
     {
         return $this->render('default/login.html.twig');
     }
+
+    public function recordarAction()
+    {
+        return $this->render('default/recordarcontrasena.html.twig');
+    }
 }

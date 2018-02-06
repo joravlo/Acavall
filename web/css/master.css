@@ -1,26 +1,135 @@
 body {
-  background-image: url('../img/fondo.jpg');
+  background-image: url('../img/fondo2.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: contain;
+  height: 100%;
+  width: 95%;
+  background-size: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .contenido {
   background-color: white;
   width: 30%;
-  margin-left: 20%;
-  margin-top: 15%;
+  margin-left: 25%;
+  margin-top: 10%;
   border: 2px solid #ccc;
-  width: 60%;
+  width: 50%;
 }
+
 input {
   width: 85%;
-  margin:0;
-  padding:0;
+  font-size: 13pt;
+  margin: 0;
+  padding: 10px;
+  margin-left: 10px;
 }
+
+.input-group {
+  padding-right: 8%;
+  padding-left: 7%;
+}
+
+i {
+  opacity: 0.4;
+}
+
+::placeholder {
+  opacity: 0.5;
+}
+
+#recordar {
+  margin-left: 70%;
+  color: #c8c22f;
+  font-weight: bold;
+}
+
 .enviar {
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 40px;
   background-color: #6b6663;
   color: white;
+  padding: 10px 32px;
+  font-size: 20px;
+}
+
+button:focus {
+  outline: none;
+}
+
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: white;
+  border-color: #c8c22f;
+  color: #c8c22f;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 40%;
+  margin-left: 6%;
+  font-size: 20px;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #c8c22f;
+  border: none;
+  color: white;
+  padding: 11px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 40%;
+  margin-left: 6%;
+  font-size: 20px;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+}
+
+.login {
+  background-color: #c8c22f;
+  border: none;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 40%;
+  margin-left: 5%;
+  font-size: 20px;
+}
+.signup {
+  background-color: white;
+  border-color: #c8c22f;
+  color: #c8c22f;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 40%;
+  margin-left: 5%;
+  font-size: 20px;
+}
+
+#bienvenido {
+  color: #6b6663;
+  font-weight: bold;
 }
