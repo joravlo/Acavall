@@ -9,3 +9,7 @@ acavall_login:
 acavall_password:
     path:     /password
     defaults: { _controller: AcavallBundle:Default:password }
+
+acavall_manage:
+    path:     /manage
+    defaults: { _controller: AcavallBundle:Default:manage }
