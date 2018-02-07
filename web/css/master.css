@@ -1,5 +1,5 @@
 body {
-  background: url('../img/fondo.jpg') no-repeat center center fixed;
+  background: url('../img/FOTOAC22.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -13,6 +13,7 @@ body {
   margin-top: 10%;
   border: 2px solid #ccc;
   width: 50%;
+  opacity: 0.9;
 }
 
 input {
@@ -129,4 +130,24 @@ button:focus {
 #bienvenido {
   color: #6b6663;
   font-weight: bold;
+}
+
+.verde {
+  background-color: #c8c22f;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  width: 100%;
+  font-size: 20px;
+  padding: 15px 32px;
+}
+
+.texto {
+  text-align: center;
 }

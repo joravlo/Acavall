@@ -1,0 +1,54 @@
+body {
+  background: url('../img/FOTOAC22.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.todo {
+  overflow-y: auto;
+}
+
+.todo p {
+  font-weight: bold;
+}
+
+td {
+  text-align: center;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  table {
+      border-collapse: collapse;
+      width: 80%;
+      background-color: white;
+  }
+
+  #total{
+    font-size: 25px;
+  }
+
+  .enviar {
+    width: 80%;
+    background-color: #c8c22f;
+    color: white;
+    padding: 10px 32px;
+    font-size: 20px;
+    border: none;
+  }
+
+  .todo {
+    margin-left: 15%;
+    margin-top: 5%;
+  }
+
+#entrada {
+
+  font-size: 15px;
+}
