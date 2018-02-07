@@ -1,0 +1,174 @@
+body {
+  background-color: #f8f8f8;
+}
+.headerEvent {
+  padding-left: 0;
+  padding-right: 0;
+  height: 360px;
+}
+
+.headerDetail {
+  padding-top: 20px;
+  height: 360px;
+  background-color: #F5F2F1;
+  color: #92949A;
+}
+
+.titleMonth {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+.titleDayMonth {
+  font-size: 20px;
+}
+
+.titlePrice{
+  font-size: 20px;
+  margin-top: 90px;
+}
+
+.headerDetail h2 {
+  color: black;
+}
+
+.btnBuy {
+  background-color: #c8c22f;
+  width: 100%;
+  color: white;
+  bottom: 10px;
+}
+
+.btnBuy:hover {
+  opacity: 0.6;
+  color: white;
+}
+
+.containerDetail {
+  background-color: #ffffff;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.containerDescription {
+  padding-left: 80px;
+  padding-right: 20px;
+}
+
+.textCategory {
+  display: inline-block;
+  color: black;
+  border-radius: 25px;
+  border: 1px solid #92949A;
+  padding: 5px 10px 5px 10px;
+  margin-top: 20px;
+}
+
+.textCategory:hover {
+  color: #c8c22f;
+  border-radius: 25px;
+  border: 1px solid #c8c22f;
+}
+
+.fa {
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 25px;
+  line-height: 50px;
+  color: white;
+  background-color: #ADB0B6;
+}
+
+.fa-facebook:hover {
+  background-color: #3b5998;
+}
+
+.fa-twitter:hover {
+  background-color: #55ACEE;
+}
+
+.fa-instagram:hover {
+  background-color: #E3296E;
+}
+
+.containerCategory {
+  margin-bottom: 50px;
+}
+
+.card {
+  background: white;
+}
+
+.card p {
+  display: flex;
+  align-items: center
+  vertical-align: top;
+  margin-bottom: 0;
+  margin-left: 10px;
+}
+
+.card i {
+  font-size:24px;
+  color: #828B91;
+
+}
+
+.textAddress {
+  color: #828B91;
+}
+
+.containerCardInfo {
+  padding: 20px;
+}
+
+.cardInfoRow {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.card iframe {
+  width: 100%;
+  height: 200px;
+  border:0;
+}
+
+.textOtherEvents {
+  text-align: center;
+  margin-top: 50px;
+}
+
+
+.containerBackground {
+  height: 500px;
+  background-image: url("../img/fondo.jpg");
+  background-repeat: no-repeat center center fixed;
+  background-size: cover;
+  display: block;
+  left: -5px;
+  top:-5px;
+  bottom:-5px;
+  right: -5px;
+  z-index: 1;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  margin:-5px;
+}
+
+.containerInfo {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: 50px;
+    z-index: 1;
+}

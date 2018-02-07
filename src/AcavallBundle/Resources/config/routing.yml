@@ -13,3 +13,11 @@ acavall_password:
 acavall_manage:
     path:     /manage
     defaults: { _controller: AcavallBundle:Default:manage }
+
+acavall_event:
+    path:     /event
+    defaults: { _controller: AcavallBundle:Default:event }
+
+acavall_ticket:
+    path:     /ticket
+    defaults: { _controller: AcavallBundle:Default:ticket }

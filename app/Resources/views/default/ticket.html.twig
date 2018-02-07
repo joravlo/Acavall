@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Compra de entradas</title>
+    <link href="{{ asset('css/ticket.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="todo">
+      <p>COMPRAR ENTRADAS</p>
+        <form>
+          <table class="table" style="width: 80%; background: white; opacity: 0.9;">
+            <tr>
+              <th scope="col">ENTRADAS</th>
+              <th scope="col">CANTIDAD</th>
+              <th scope="col">PRECIO</th>
+            </tr>
+            <tr>
+              <td><b>Entrada General</b></td>
+              <td>
+                <select id="inputState" class="form-control" name="nºEntradas">
+                  <option value="1" selected>1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </td>
+              <td style="font-size: 15px; text-align: center;">x 18€</td>
+            </tr>
+            <tr>
+              <td><b>¿Niño o adulto?</b></td>
+              <td>
+                <select id="inputState" class="form-control" name="edad">
+                  <option value="ninguno" selected disabled> </option>
+                  <option value="niño">Niño</option>
+                  <option value="adulto">Adulto</option>
+                </select>
+              </td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td><b>Edad de los niños</b></td>
+              <td>
+                <select id="inputState" class="form-control" name="niño">
+                  <option value="ninguno" selected disabled></option>
+                  <option value="1-3">1-3</option>
+                  <option value="4-6">4-6</option>
+                  <option value="7-9">7-9</option>
+                  <option value="10-12">10-12</option>
+                  <option value="13-15">13-15</option>
+                  <option value="16-17">16-17</option>
+                </select>
+              </td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td><b>¿Alguno de los participantes tiene diversidad funcional o discapacidad?</b></td>
+              <td>
+                <select id="inputState" class="form-control" name="discapacidad">
+                  <option value="ninguno" selected disabled> </option>
+                  <option value="si">Si</option>
+                  <option value="no">No</option>
+                </select>
+              </td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td><b>¿Necesita algun tipo de adaptación o apoyo?</b></td>
+              <td>
+                <input type="text" class="form-control" id="inputCity">
+              </td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td><b>TOTAL</b> impuestos incluidos</td>
+              <td> </td>
+              <td><b id="total">19,80€</b></td>
+            </tr>
+          </table>
+          <br><br>
+          <input type="submit" name="enviar" value="Continuar" class="enviar">
+
+        </form>
+    </div>
+  </body>
+</html>
