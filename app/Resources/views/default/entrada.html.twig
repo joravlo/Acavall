@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Entrada</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <style media="screen">
+    .contenido {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 5%;
+    }
+
+    body {
+      background-color: #ededed;
+    }
+
+    .entras {
+      text-align: center;
+      font-weight: bold;
+      font-size: 17px;
+    }
+
+    .pago {
+      font-size: 25px;
+      color: green;
+    }
+
+    .entras span {
+      color: green;
+      font-size: 30px;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    table, td, th {
+      border: 5px solid lightgrey;
+    }
+    </style>
+
+    <div class="entras">
+      <br><br>
+      <p class="pago">Enhorabuena, el pago se ha realizado con exito.&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-ok"></span></p>
+      <p> A continuacion tienes la entrada para el evento.Tambien se le a enviado un correo con la entrada</p>
+    </div>
+    <div class="contenido">
+    <table class="table table-sm">
+        <tr>
+          <td colspan="2"><img src="{{asset ('img/fondo.jpg')}}" alt="Foto Entrada" height="150" width="300" style="float:left"><p style="margin-left: 80px; margin-top: 50px; font-size: 35px; font-weight:bold; float:left">Evento de Terapia con animales</p></td>
+        </tr>
+      <tbody>
+        <tr>
+          <td><h5 style="color:#6b6663;">Fecha + hora </h5><p style="text-align: center; font-size: 15px; font-weight:bold;">Domingo, 28 de agosto de 2016 desde las 19:00 hasta las 21:00</p></td>
+          <td><h5 style="color:#6b6663;">Ubicacion</h5><p style="text-align: center; font-size: 15px; font-weight:bold;">Valencia, c/Avenida del Cid, nº15</td>
+        </tr>
+        <tr>
+          <td colspan="2"><h5 style="color:#6b6663;">Informacion del pedido</h5><p style="text-align: center; font-size: 15px; font-weight:bold;">Pedido nº537. Pedido por Pepe Guede el 18 de junio de 2016</p></td>
+        </tr>
+        <tr>
+          <td colspan="2"><h5 style="color:grey;">Tipo de entrada</h5><p style="text-align: right; font-size: 15px; font-weight:bold; ">Entrada normal 19'80€</p></td>
+        </tr>
+      </tbody>
+    </table>
+        </div>
+  </body>
+</html>

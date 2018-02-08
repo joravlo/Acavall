@@ -18,6 +18,10 @@ acavall_event:
     path:     /event
     defaults: { _controller: AcavallBundle:Default:event }
 
+acavall_buy:
+    path:     /buy
+    defaults: { _controller: AcavallBundle:Default:buy }
+
 acavall_ticket:
     path:     /ticket
     defaults: { _controller: AcavallBundle:Default:ticket }
