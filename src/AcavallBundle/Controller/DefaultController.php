@@ -4,6 +4,8 @@ namespace AcavallBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use AcavallBundle\Entity\Event;
+
 class DefaultController extends Controller
 {
     public function indexAction()
@@ -26,9 +28,12 @@ class DefaultController extends Controller
         return $this->render('default/gestorEvent.html.twig');
     }
 
-    public function eventAction()
+    public function eventAction($eventId)
     {
-        return $this->render('default/event.html.twig');
+      $em = $this->getDoctrine()->getManager();
+      $event = $em->getRepository(Event::Class)->find($eventId);
+
+        return $this->render('default/event.html.twig',array('event'=>$event));
     }
 
     public function ticketAction()

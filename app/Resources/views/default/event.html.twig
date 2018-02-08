@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Evento</title>
+    <title>{{event.name}}</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
@@ -22,33 +22,32 @@
         <div class="row">
           <img class="col-md-8 headerEvent img-fluid" src="{{ asset('img/fondo.jpg') }}" alt="Imagen del evento">
           <div class="col-md-4 headerDetail">
-            <p class="titleMonth">ENE</p>
-            <p class="titleDayMonth">20</p>
-            <h2>Workshop IAA Fundación Acavall</h2>
-            <p class="titlePrice">20€</p>
-            <button class="btn btnBuy btn-lg"type="button" name="button">COMPRAR</button>
+            <p class="titleMonth">{{event.date|date('M')}}</p>
+            <p class="titleDayMonth">{{event.date|date('d')}}</p>
+            <h2>{{event.name}}</h2>
+            <p class="titlePrice">{{event.price}}€</p>
+            <a href="{{path('acavall_ticket')}}"><button class="btn btnBuy btn-lg"type="button" name="button">COMPRAR</button></a>
+
           </div>
         </div>
         <div class="row containerDetail">
           <div class="col-md-8 containerDescription">
               <h5>DESCRIPCIÓN</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et quam posuere, auctor quam vel, suscipit massa. Proin nec porta nibh. Mauris enim leo, aliquam sagittis libero ac, convallis venenatis justo. Donec sagittis, nibh ut mattis efficitur, nulla diam laoreet ante, eget bibendum ex lorem luctus ante. Sed viverra risus ligula, dignissim fermentum nisl lacinia vel. Sed auctor sagittis ligula, eu sollicitudin nisi dignissim sed. Proin a interdum tellus. In dapibus aliquet laoreet. Suspendisse nec dignissim ante, vel maximus dolor. <br>
-
-              Praesent ac risus at ex dapibus placerat. Donec feugiat ut eros sit amet rutrum. Morbi rhoncus semper nunc sit amet luctus. Maecenas mollis lacus diam, id luctus nunc fringilla at. Sed aliquam molestie ipsum et volutpat. Mauris ut placerat diam, non posuere eros. Vestibulum ornare pretium accumsan. Aenean quis sollicitudin nisi. Fusce euismod dapibus odio ut rhoncus. Nunc nec est congue, laoreet velit ut, volutpat nulla. Donec mattis leo id eros tempor pretium. Etiam dapibus et purus eu mollis. Curabitur ornare condimentum enim, id ullamcorper erat elementum in.</p>
+              <p>{{event.description}}</p>
 
               <h5 style="margin-top:50px;">CATEGORIAS</h5>
 
               <div class="containerCategory">
-                <span class="textCategory">Movilidad reducida</span> <span class="textCategory">Movilidad reducida</span>
-                <span class="textCategory">Movilidad reducida</span> <span class="textCategory">Movilidad reducida</span>
-                <span class="textCategory">Movilidad reducida</span>
+                {% for category in event.categories %}
+                <span class="textCategory">{{category.name}}</span>
+                {% endfor %}
               </div>
 
               <h5>COMPARTELO CON TUS AMIGOS</h5>
               <div class="">
-                <i class="fa fa-facebook" title="Compartir en facebook"></i>
-                <i class="fa fa-twitter" title="Compartir en instagram"></i>
-                <i class="fa fa-instagram" title="Compartir en instagram"></i>
+                <a href="http://www.facebook.com/sharer.php?u=localhost:8000{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" target="_blank"><i class="fa fa-facebook" title="Compartir en facebook"></i></a>
+                <a href="http://twitter.com/share?url=localhost:8000{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}"target="_blank">
+                 <i class="fa fa-twitter" title="Compartir en twitter"></i> </a>
               </div>
           </div>
 
@@ -57,15 +56,15 @@
                 <div class="containerCardInfo">
                   <i class="fas fa-map-marker-alt"></i>
                   <div class="cardInfoRow">
-                    <p>jueves,21 de diciembre de 2018</p>
-                    <p>19:00 hasta el 22:00</p>
+                    <p>{{event.date|date('l,d \\d\\e F \\d\\e Y')}}</p>
+                    <p>{{event.date|date('H:i')}}</p>
                   </div>
                 </div>
                 <div class="containerCardInfo">
                   <i class="far fa-clock"></i>
                   <div class="cardInfoRow">
-                    <p>Fundación Acavall</p>
-                    <p class="textAddress">Hipica Rueda · Naquera</p>
+                    <p>{{event.localName}}</p>
+                    <p class="textAddress">{{event.address}}</p>
                   </div>
                 </div>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3071.7151078851634!2d-0.4447235843454695!3d39.6561257094678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd606801f609c8c7:0x45fbaafe1e804444!2sFundación+ACAVALL!5e0!3m2!1ses!2ses!4v1517911140771"  frameborder="0" allowfullscreen></iframe>

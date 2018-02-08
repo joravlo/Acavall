@@ -15,7 +15,7 @@ acavall_manage:
     defaults: { _controller: AcavallBundle:Default:manage }
 
 acavall_event:
-    path:     /event
+    path:     /event/{eventId}
     defaults: { _controller: AcavallBundle:Default:event }
 
 acavall_ticket:

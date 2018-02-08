@@ -369,28 +369,4 @@ class Event
     {
         return $this->tickets;
     }
-
-    /**
-     * Set localName
-     *
-     * @param string $localName
-     *
-     * @return Event
-     */
-    public function setLocalName($localName)
-    {
-        $this->localName = $localName;
-    
-        return $this;
-    }
-
-    /**
-     * Get localName
-     *
-     * @return string
-     */
-    public function getLocalName()
-    {
-        return $this->localName;
-    }
 }
