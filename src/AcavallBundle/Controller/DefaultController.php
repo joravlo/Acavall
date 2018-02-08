@@ -31,9 +31,14 @@ class DefaultController extends Controller
         return $this->render('default/event.html.twig');
     }
 
-    public function ticketAction()
+    public function buyAction()
     {
         return $this->render('default/ticket.html.twig');
+    }
+
+    public function ticketAction()
+    {
+        return $this->render('default/entrada.html.twig');
     }
 
 }
