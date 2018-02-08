@@ -1,0 +1,11 @@
+event_add:
+    path:     /createEvent
+    defaults: { _controller: AcavallBundle:Event:createEvent}
+
+event_update:
+    path:     /updateEvent/{eventId}
+    defaults: { _controller: AcavallBundle:Event:updateEvent}
+
+event_delete:
+    path:     /deleteEvent/{eventId}
+    defaults: { _controller: AcavallBundle:Event:deleteEvent}

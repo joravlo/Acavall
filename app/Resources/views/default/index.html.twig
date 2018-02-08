@@ -1,204 +1,143 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Inicio</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'base.html.twig' %}
 
-    <style media="screen">
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+{% endblock %}
 
-      label{margin-top: 5px;}
-      input[type="radio"] {
-        color:red;
-      }
+{% block body %}
+  <div id="general" class="container">
+    <div class="row">
 
-      #general {
-        margin-top:20px;
-        margin-bottom:20px;
-      }
+      <div class="col-md-3" style="background:white;">
 
-      /* Cards -- */
+        <p style="margin-top:20px;"><b>FECHA</b></p>
+        <fieldset class="form-group">
+          <div class="form-check tit">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="fecha" value="todas" checked>
+              Todas las fechas
+            </label><br>
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="fecha" value="hoy">
+              Hoy
+            </label><br>
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="fecha" value="mañana">
+              Mañana
+            </label><br>
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="fecha" value="esta semana">
+              Esta semana
+            </label><br>
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="fecha" value="este fin de semana">
+              Este fin de semana <br>
+            </label><br>
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="fecha" value="este mes">
+              Este mes
+            </label>
+          </div>
+        </fieldset>
 
-      #contCard {
-        background:#F9F9F9;
-        padding-top:20px;
-        padding-bottom:15px;
-      }
-      #month {
-        background:grey;
-        color:white;
-        margin-bottom:0px;
-      }
-      #day { border:solid 0.5px grey; }
-      #eveName {
-        padding-left:15px;
-        font-size:18px;
-      }
-      .btnC {
-        background:#c8c22f;
-        color:white;
-        width:120px;
-        height:40px;
-        border-radius:0;
-      }
-      .btnC:hover {
-        color:white;
-        opacity:0.7;
-      }
-      .tit{ margin-top:-10px; }
-      .cardFormat{
-        width: 16rem;
-        display:inline-block;
-        margin: 0px 8px 25px 8px;
-      }
+        <p style="margin-top:10px;"><b>PARTICIPANTES</b></p>
+        <fieldset class="form-group">
+          <div class="form-check tit">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="participantes" value="niños y niñas">
+              Niños y niñas
+            </label><br>
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="participantes" value="adultos">
+              Adultos
+            </label><br>
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="participantes" value="familia">
+              Familia <br>
+            </label>
+          </div>
+        </fieldset>
 
-    </style>
+        <p style="margin-top:10px;"><b>ANIMALES</b></p>
+        <fieldset class="form-group tit">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="animales" value="todos los animales">
+              Todos los animales
+            </label><br>
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="animales" value="gatos">
+              Gatos
+            </label><br>
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="animales" value="perros">
+              Perros
+            </label><br>
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="animales" value="pequeños animales">
+              Pequeños animales
+            </label><br>
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="animales" value="animales silvestres">
+              Animales silvestres
+            </label>
+          </div>
+        </fieldset>
 
-  </head>
-  <body style="background:#EDEDED;">
+        <p style="margin-top:10px;"><b>ACTIVIDADES</b></p>
+        <fieldset class="form-group tit">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="actividades" value="inclusivas">
+              Inclusivas <br>
+            </label>
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="actividades" value="accesibles para silla de ruedas">
+              Accesibles para silla de ruedas <br>
+            </label>
+          </div>
+        </fieldset>
 
-    <div id="general" class="container">
-      <div class="row">
+      </div><br><br>
 
-        <div class="col-md-3" style="background:white;">
+      <div class="col-md-9">
 
-          <p style="margin-top:20px;"><b>FECHA</b></p>
-          <fieldset class="form-group">
-            <div class="form-check tit">
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="fecha" value="todas" checked>
-                Todas las fechas
-              </label><br>
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="fecha" value="hoy">
-                Hoy
-              </label><br>
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="fecha" value="mañana">
-                Mañana
-              </label><br>
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="fecha" value="esta semana">
-                Esta semana
-              </label><br>
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="fecha" value="este fin de semana">
-                Este fin de semana <br>
-              </label><br>
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="fecha" value="este mes">
-                Este mes
-              </label>
-            </div>
-          </fieldset>
+          <!-- Card -->
+          <div class="card cardFormat">
+            <img class="card-img-top" width="100px" height="130px" src="{{asset('img/acavall.jpg')}}" alt="Card image cap">
+            <div class="card-block">
+              <p id="eveName"><b>Evento 1</b></p>
 
-          <p style="margin-top:10px;"><b>PARTICIPANTES</b></p>
-          <fieldset class="form-group">
-            <div class="form-check tit">
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="participantes" value="niños y niñas">
-                Niños y niñas
-              </label><br>
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="participantes" value="adultos">
-                Adultos
-              </label><br>
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="participantes" value="familia">
-                Familia <br>
-              </label>
-            </div>
-          </fieldset>
+              <div id="contCard" class="container">
 
-          <p style="margin-top:10px;"><b>ANIMALES</b></p>
-          <fieldset class="form-group tit">
-            <div class="form-check">
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="animales" value="todos los animales">
-                Todos los animales
-              </label><br>
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="animales" value="gatos">
-                Gatos
-              </label><br>
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="animales" value="perros">
-                Perros
-              </label><br>
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="animales" value="pequeños animales">
-                Pequeños animales
-              </label><br>
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="animales" value="animales silvestres">
-                Animales silvestres
-              </label>
-            </div>
-          </fieldset>
-
-          <p style="margin-top:10px;"><b>ACTIVIDADES</b></p>
-          <fieldset class="form-group tit">
-            <div class="form-check">
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="actividades" value="inclusivas">
-                Inclusivas <br>
-              </label>
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="actividades" value="accesibles para silla de ruedas">
-                Accesibles para silla de ruedas <br>
-              </label>
-            </div>
-          </fieldset>
-
-        </div><br><br>
-
-        <div class="col-md-9">
-
-            <!-- Card -->
-            <div class="card cardFormat">
-              <img class="card-img-top" width="100px" height="130px" src="{{asset('img/acavall.jpg')}}" alt="Card image cap">
-              <div class="card-block">
-                <p id="eveName"><b>Evento 1</b></p>
-
-                <div id="contCard" class="container">
-
-                  <div class="row" style="margin-bottom:5px">
-                    <div class="col-md-4 text-center">
-                      <div id="month">DIC</div>
-                      <div id="day">24</div>
-                    </div>
-                    <div class="col-md-8" style="font-size:14px;">
-                      <p style="margin-bottom:0px;"><i style="color:grey;" class="far fa-money-bill-alt"></i> &nbsp; desde <b>8€</b></p>
-                      <p><i style="color:grey;" class="fas fa-map-marker"></i> &nbsp;C/ Rei en Jaume I, nº 2. 46470 (Valencia)</p>
-                    </div>
+                <div class="row" style="margin-bottom:5px">
+                  <div class="col-md-4 text-center">
+                    <div id="month">DIC</div>
+                    <div id="day">24</div>
                   </div>
-
-                  <div class="row">
-                    <div class="col-md-5 text-center" style="padding-top:8px;">
-                      <a style="color:#c8c22f; text-decoration:none;" href="event">VER MAS</a>
-                    </div>
-                    <div class="col-md-7 text-center">
-                      <a href="ticket" class="btn btnC" width="100px">COMPRAR</a>
-                    </div>
+                  <div class="col-md-8" style="font-size:14px;">
+                    <p style="margin-bottom:0px;"><i style="color:grey;" class="far fa-money-bill-alt"></i> &nbsp; desde <b>8€</b></p>
+                    <p><i style="color:grey;" class="fas fa-map-marker"></i> &nbsp;C/ Rei en Jaume I, nº 2. 46470 (Valencia)</p>
                   </div>
-
                 </div>
+
+                <div class="row">
+                  <div class="col-md-5 text-center" style="padding-top:8px;">
+                    <a style="color:#c8c22f; text-decoration:none;" href="event">VER MAS</a>
+                  </div>
+                  <div class="col-md-7 text-center">
+                    <a href="ticket" class="btn btnC" width="100px">COMPRAR</a>
+                  </div>
+                </div>
+
               </div>
             </div>
-            <!-- Fin Card -->
-
-        </div>
+          </div>
+          <!-- Fin Card -->
 
       </div>
+
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-
-  </body>
-</html>
+  </div>
+{% endblock %}

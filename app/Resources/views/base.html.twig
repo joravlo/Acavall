@@ -1,13 +1,76 @@
 <!DOCTYPE html>
 <html>
     <head>
+
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+
+        <title>{% block title %} aCavall - Inicio {% endblock %}</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+        {% block stylesheets %}
+        {% endblock %}
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
     </head>
     <body>
+
+        <div class="container" style="margin-top:20px;">
+
+          <nav class="navbar navbar-expand-sm justify-content-between" style="background:#c8c22f;">
+            <a class="navbar-brand" href="#">
+              <img src="img/logoNav.png" alt="logotipo aCavall" style="width:110px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <form class="form-inline">
+              <a class="s my-2 my-sm-0" href="{{path('acavall_login')}}" style="color:white; text-decoration:none; margin-right:10px;">Unete!</a>
+            </form>
+          </nav>
+
+        </div>
+
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+        <footer class="container-fluid text-center" style="margin-top:20px; background:grey; padding:20px;">
+      		<div class="row" style="color:white">
+      			<div class="col-md-4 offset-md-2">
+      				<h4>Contacto</h4>
+              <p>
+                tlf. 692 03 89 30 <br>
+                info@fundacionacavall.com
+              </p>
+      			</div>
+      			<div class="col-md-4">
+      				<h4>Redes Sociales</h4>
+      				<a class="btn btn-social-icon btn-twitter">
+          			<span class="fa fa-twitter"></span>
+        			</a>
+      				<a class="btn btn-social-icon btn-facebook">
+      					<span class="fa fa-facebook"></span>
+      				</a>
+      				<a class="btn btn-social-icon btn-instagram">
+      					<span class="fa fa-instagram"></span>
+      				</a>
+      			</div>
+      		</div>
+      	</footer>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        
+        {% block javascripts %}
+        {% endblock %}
+
     </body>
 </html>
