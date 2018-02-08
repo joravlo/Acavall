@@ -1,0 +1,40 @@
+
+.general {
+  margin-top:50px;
+}
+.list-head{
+  background: grey;
+  color: white;
+}
+.btn-outline-secondary,
+.btn-outline-secondary:focus {
+  border-color: white;
+  box-shadow: none;
+}
+.btn-outline-secondary:hover{
+  background:transparent;
+  box-shadow: none;
+  border-color: white;
+  opacity: 0.9;
+}
+.btn:focus, input:focus{
+  box-shadow: none;
+}
+.pagination {
+  display: inline-block;
+  background: white;
+}
+.pagination a {
+  color: black;
+  float: left;
+  padding: 7px 14px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+.pagination a.active {
+  background-color: grey;
+  color: white;
+  border: 1px solid grey;
+}
+.pagination a:hover:not(.active) {background-color: #ddd;}
