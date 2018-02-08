@@ -2,6 +2,10 @@ acavall:
     resource: "@AcavallBundle/Resources/config/routing.yml"
     prefix:   /
 
+event:
+    resource: "@AcavallBundle/Resources/config/eventRouting.yml"
+    prefix:   /event
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
