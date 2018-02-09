@@ -8,10 +8,10 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-      $repository = $this->getDoctrine()->getRepository('AcavallBundle:Event');
-      $evento = $repository->findAll();
+        $repository = $this->getDoctrine()->getRepository('AcavallBundle:Event');
+        $evento = $repository->findAll();
 
-      return $this->render('default/index.html.twig',array("eventos"=>$evento));
+        return $this->render('default/index.html.twig',array("eventos"=>$evento));
     }
 
     public function loginAction()
@@ -26,7 +26,10 @@ class DefaultController extends Controller
 
     public function manageAction()
     {
-        return $this->render('default/gestorEvent.html.twig');
+        $repository = $this->getDoctrine()->getRepository('AcavallBundle:Event');
+        $evento = $repository->findAll();
+
+        return $this->render('default/gestorEvent.html.twig',array("eventos"=>$evento));
     }
 
     public function eventAction()
