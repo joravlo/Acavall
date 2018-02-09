@@ -10,7 +10,10 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('default/index.html.twig');
+        $repository = $this->getDoctrine()->getRepository('AcavallBundle:Event');
+        $evento = $repository->findAll();
+
+        return $this->render('default/index.html.twig',array("eventos"=>$evento));
     }
 
     public function loginAction()
@@ -25,7 +28,10 @@ class DefaultController extends Controller
 
     public function manageAction()
     {
-        return $this->render('default/gestorEvent.html.twig');
+        $repository = $this->getDoctrine()->getRepository('AcavallBundle:Event');
+        $evento = $repository->findAll();
+
+        return $this->render('default/gestorEvent.html.twig',array("eventos"=>$evento));
     }
 
     public function eventAction($eventId)
@@ -38,9 +44,14 @@ class DefaultController extends Controller
         return $this->render('default/event.html.twig',array('event'=>$event,'eventsCategory'=>$eventsCategory));
     }
 
-    public function ticketAction()
+    public function buyAction()
     {
         return $this->render('default/ticket.html.twig');
+    }
+
+    public function ticketAction()
+    {
+        return $this->render('default/entrada.html.twig');
     }
 
 }

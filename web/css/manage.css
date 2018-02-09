@@ -1,6 +1,8 @@
-
+body{
+  background:#EDEDED;
+}
 .general {
-  margin-top:50px;
+  margin-top:20px;
 }
 .list-head{
   background: grey;
