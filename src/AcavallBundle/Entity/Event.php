@@ -3,6 +3,7 @@
 namespace AcavallBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Event
@@ -83,7 +84,7 @@ class Event
 
     /**
      * @var string
-     *
+     * @Assert\Blank()
      * @ORM\Column(name="video", type="string", length=255, nullable=true)
      */
     private $video;
@@ -380,7 +381,7 @@ class Event
     public function setLocalName($localName)
     {
         $this->localName = $localName;
-    
+
         return $this;
     }
 

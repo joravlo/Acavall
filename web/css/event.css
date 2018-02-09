@@ -126,9 +126,15 @@ body {
 }
 
 .cardInfoRow {
+  padding: 0;
   vertical-align: middle;
   display: inline-block;
 }
+
+.cardInfoRow p {
+  word-wrap: break-word;
+}
+
 
 .card iframe {
   width: 100%;

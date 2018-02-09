@@ -10,4 +10,10 @@ namespace AcavallBundle\Repository;
  */
 class EventRepository extends \Doctrine\ORM\EntityRepository
 {
+  public function getEvetsByCategory($category)
+  {
+    return $this->createQueryBuilder('e')
+           ->innerJoin('e.categories', 'c', 'WITH', 'c.id = :idCategory')
+           ->setParameter('idCategory', $category)->getQuery()->getResult();
+  }
 }

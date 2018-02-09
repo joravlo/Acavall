@@ -33,7 +33,9 @@ class DefaultController extends Controller
       $em = $this->getDoctrine()->getManager();
       $event = $em->getRepository(Event::Class)->find($eventId);
 
-        return $this->render('default/event.html.twig',array('event'=>$event));
+      $eventsCategory = $em->getRepository(Event::Class)->getEvetsByCategory($event->getCategories()[0]->getId());
+
+        return $this->render('default/event.html.twig',array('event'=>$event,'eventsCategory'=>$eventsCategory));
     }
 
     public function ticketAction()

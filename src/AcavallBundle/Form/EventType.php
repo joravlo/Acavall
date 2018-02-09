@@ -20,10 +20,11 @@ class EventType extends AbstractType
         $builder->add('name', TextType::class)
         ->add('description', TextType::class)
         ->add('address', TextType::class)
+        ->add('localName', TextType::class)
         ->add('capacity', TextType::class)
         ->add('date', DateType::class, array('widget' => 'choice'))
         ->add('price', TextType::class, array('label' => 'Precio de la entrada'))
-        ->add('video', TextType::class)
+        ->add('video', TextType::class, array('required' => false))
         ->add('image', TextType::class)
         ->add('categories')
         ->add('Crear evento',SubmitType::class);
