@@ -6,6 +6,10 @@ acavall_login:
     path:     /login
     defaults: { _controller: AcavallBundle:Default:login }
 
+acavall_register:
+    path:     /register
+    defaults: { _controller: AcavallBundle:Register:register }
+
 acavall_password:
     path:     /password
     defaults: { _controller: AcavallBundle:Default:password }
@@ -25,3 +29,7 @@ acavall_buy:
 acavall_ticket:
     path:     /ticket
     defaults: { _controller: AcavallBundle:Default:ticket }
+
+acavall_code:
+    path:     /verifyCode/{ramCode}
+    defaults: { _controller: AcavallBundle:Register:urlcode }

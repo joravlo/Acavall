@@ -3,6 +3,7 @@
 namespace AcavallBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 use AcavallBundle\Entity\Event;
 
@@ -16,9 +17,11 @@ class DefaultController extends Controller
         return $this->render('default/index.html.twig',array("eventos"=>$evento));
     }
 
-    public function loginAction()
+    public function loginAction(Request $request)
     {
-        return $this->render('default/login.html.twig');
+      $authenticationUtils = $this->get('security.authentication_utils');
+      
+      return $this->render('default/defaultLogin.html.twig');
     }
 
     public function passwordAction()
