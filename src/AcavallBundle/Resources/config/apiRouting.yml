@@ -1,0 +1,44 @@
+api_event_delete:
+    path:     /deleteEvent/{eventId}
+    defaults: { _controller: AcavallBundle:Api:deleteEvent}
+    methods:  [DELETE]
+
+api_get_events_with_category:
+    path:     /getEventsWithCategory/{categoryId}
+    defaults: { _controller: AcavallBundle:Api:getEventsWithCategory}
+    methods:  [GET]
+
+api_get_event:
+    path:     /getEvent/{eventId}
+    defaults: { _controller: AcavallBundle:Api:getEvent}
+    methods:  [GET]
+
+api_get_all_events:
+    path:     /getAllEvents
+    defaults: { _controller: AcavallBundle:Api:getAllEvents}
+    methods:  [GET]
+
+api_get_events_today:
+    path:     /getEventsToday
+    defaults: { _controller: AcavallBundle:Api:getEventsToday}
+    methods:  [GET]
+
+api_get_events_tomorrow:
+    path:     /getEventsTomorrow
+    defaults: { _controller: AcavallBundle:Api:getEventsTomorrow}
+    methods:  [GET]
+
+api_get_events_this_week:
+    path:     /getEventsThisWeek
+    defaults: { _controller: AcavallBundle:Api:getEventsThisWeek}
+    methods:  [GET]
+
+api_get_events_this_weekend:
+    path:     /getEventsThisWeekend
+    defaults: { _controller: AcavallBundle:Api:getEventsThisWeekend}
+    methods:  [GET]
+
+api_get_events_this_month:
+    path:     /getEventsThisMonth
+    defaults: { _controller: AcavallBundle:Api:getEventsThisMonth}
+    methods:  [GET]
