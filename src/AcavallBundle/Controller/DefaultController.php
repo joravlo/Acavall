@@ -54,14 +54,14 @@ class DefaultController extends Controller
         return $this->render('default/entrada.html.twig');
     }
 
-    public function emailAction($name)
+    public function emailRegistryAction($name)
 {
-    $message = (new \Swift_Message('Hello Email'))
+    $message = (new \Swift_Message('Email de Registro'))
         ->setFrom('pruebaacavall@gmail.com')
         ->setTo('joravlo@gmail.com')
         ->setBody(
             $this->renderView(
-                'default/email.html.twig',
+                'default/emailregistro.html.twig',
                 array('name' => $name)
             ),
             'text/html'
@@ -71,5 +71,30 @@ class DefaultController extends Controller
 
     return $this->render('default/email.html.twig');
 }
+
+public function emailTicketAction($name)
+{
+$message = (new \Swift_Message('Email de Registro'))
+
+    ->setFrom('pruebaacavall@gmail.com')
+    ->setTo('joravlo@gmail.com')
+    ->setBody(
+        $this->renderView(
+            'default/emailTicket.html.twig',
+            array('name' => $name)
+        ),
+        'text/html'
+    )
+
+;
+$this->get('mailer')->send($message);
+
+return $this->render('default/email.html.twig');
+}
+
+    public function emailPasswordAction($name)
+    {
+        return $this->render('default/emailpassword.html.twig',array('name' => $name));
+    }
 
 }
