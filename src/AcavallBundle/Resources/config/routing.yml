@@ -25,3 +25,7 @@ acavall_buy:
 acavall_ticket:
     path:     /ticket
     defaults: { _controller: AcavallBundle:Default:ticket }
+
+acavall_email:
+    path:     /email/{name}
+    defaults: { _controller: AcavallBundle:Default:email }

@@ -54,4 +54,22 @@ class DefaultController extends Controller
         return $this->render('default/entrada.html.twig');
     }
 
+    public function emailAction($name)
+{
+    $message = (new \Swift_Message('Hello Email'))
+        ->setFrom('pruebaacavall@gmail.com')
+        ->setTo('joravlo@gmail.com')
+        ->setBody(
+            $this->renderView(
+                'default/email.html.twig',
+                array('name' => $name)
+            ),
+            'text/html'
+        )
+    ;
+    $this->get('mailer')->send($message);
+
+    return $this->render('default/email.html.twig');
+}
+
 }
