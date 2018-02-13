@@ -11,55 +11,65 @@
     <div class="contenido">
 
     <div class="w3-bar w3-black">
-      <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'login')" id="defaultOpen">Log In</button>
-        <button class="tablinks" onclick="openCity(event, 'signup')">Sign Up</button>
+      <div class="tab" style="margin-left:70px">
+        <div class="row">
+          <button class="tablinks col-md-6" onclick="openCity(event, 'login')" id="defaultOpen">Log In</button>
+          <button class="tablinks col-md-6" onclick="openCity(event, 'signup')">Sign Up</button>
+        </div>
       </div>
     </div>
 
-    <div id="login" class="tabcontent">
-      <form>
-        <p id="bienvenido">Bienvenido de nuevo</p>
-        <div class="input-group">
-          <input style="padding:10px; font-size:13pt;" class="form-control" type="text" name="email" placeholder="Email">
-          <span style="background-color:white;margin-right:10%" class="input-group-addon"><i class="fas fa-at"></i></span>
-        </div>
-        <div class="input-group">
-          <input style="padding:10px; font-size:13pt;" class="form-control" type="password" name="Contraseña" placeholder="Contraseña" value="">
-          <span style="background-color:white;" class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-        </div>
-        <a id="recordar" href="password">¿Has olvidado tu contraseña?</a>
-        <br><br>
-        <input type="submit" name="Enviar" class="enviar" value="Entrar">
-      </form>
-    </div>
-    <div id="signup" class="tabcontent">
-        <form>
-          <p id="bienvenido">Bienvenido a Acavall</p>
+    <form action="{{ path('acavall_login') }}" method="post">
+      <div id="login" class="tabcontent">
+          <p id="bienvenido">Bienvenido de nuevo</p>
           <div class="input-group">
-            <input style="padding:10px; font-size:13pt;" class="form-control" type="text" name="nombre" placeholder="Nombre">
-            <span style="background-color:white;" class="input-group-addon"><i class="far fa-user"></i></span>
+            <input id="username" style="padding:10px; font-size:13pt; border-radius: 0px;" class="form-control" type="text" name="_username" placeholder="Email">
+            <span style="background-color:white;margin-right:10% border-radius: 0px;" class="input-group-addon"><i class="fas fa-at"></i></span>
           </div>
           <div class="input-group">
-            <input style="padding:10px; font-size:13pt;" class="form-control" type="text" name="apellidos" placeholder="Apellidos">
-            <span style="background-color:white;" class="input-group-addon"><i class="far fa-user"></i></span>
+            <input id="password" style="padding:10px; font-size:13pt; border-radius: 0px;" class="form-control" type="password" name="_password" placeholder="Contraseña" value="">
+            <span style="background-color:white; border-radius: 0px;" class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
           </div>
-          <div class="input-group">
-            <input style="padding:10px; font-size:13pt;" class="form-control" type="text" name="email" placeholder="Email">
-            <span style="background-color:white;" class="input-group-addon"><i class="fas fa-at"></i></span>
-          </div>
-          <div class="input-group">
-            <input style="padding:10px; font-size:13pt;" class="form-control" type="password" name="contraseña" placeholder="Contraseña">
-            <span style="background-color:white;" class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-          </div>
-          <div class="input-group">
-            <input style="padding:10px; font-size:13pt;" class="form-control" type="text" name="telefono" placeholder="Telefono">
-            <span style="background-color:white;" class="input-group-addon"><i class="fas fa-phone"></i></span>
-          </div>
-          <br>
-          <input type="submit" value="Registrarse" class="enviar">
-        </form>
-    </div>
+          <a id="recordar" href="password">¿Has olvidado tu contraseña?</a>
+          <br><br>
+          <input type="submit" name="Enviar" class="enviar" value="Entrar">
+      </div>
+
+      <div id="signup" class="tabcontent">
+            <p id="bienvenido">Bienvenido a Acavall</p>
+            <div class="input-group">
+              {{ form_widget(form1.name, { 'attr': {'class': 'form-control', 'placeholder': 'Nombre', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
+              <span style="background-color:white;" class="input-group-addon"><i class="far fa-user"></i></span>
+            </div>
+            <div class="input-group ">
+              {{ form_widget(form1.surname, { 'attr': {'class': 'form-control', 'placeholder': 'Apellidos', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
+              <span style="background-color:white;" class="input-group-addon"><i class="far fa-user"></i></span>
+            </div>
+            <div class="input-group ">
+              {{ form_widget(form1.username, { 'attr': {'class': 'form-control', 'placeholder': 'Nombre de usuario', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
+              <span style="background-color:white;" class="input-group-addon"><i class="far fa-user"></i></span>
+            </div>
+            <div class="input-group">
+              {{ form_widget(form1.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
+              <span style="background-color:white;" class="input-group-addon"><i class="fas fa-at"></i></span>
+            </div>
+            <div class="input-group">
+              {{ form_widget(form1.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Contraseña', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
+              <span style="background-color:white;" class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            </div>
+            <div class="input-group">
+              {{ form_widget(form1.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'Repetir contraseña', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
+              <span style="background-color:white;" class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            </div>
+            <div class="input-group">
+              {{ form_widget(form1.phone, { 'attr': {'class': 'form-control', 'placeholder': 'Telefono', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
+              <span style="background-color:white;" class="input-group-addon"><i class="fas fa-phone"></i></span>
+            </div>
+            <br>
+            <input type="submit" value="Registrarse" class="enviar">
+      </div>
+    </form>
+
     <script>
     function openCity(evt, cityName) {
         var i, tabcontent, tablinks;

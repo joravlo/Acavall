@@ -11,7 +11,7 @@
 
 {% block body %}
   <div class="container general" style="padding:0px;">
-    <ul class="list-group">
+    <ul id="mul" class="list-group">
 
       <li class="list-group-item list-head" style="border-radius:0px; height:70px;">
         <div class="row">
@@ -22,7 +22,7 @@
               <div class="form-group">
                 <input type="text"  id="date" name="date" placeholder="Desde" style="width:120px;"/>&nbsp; / &nbsp;
                 <input type="text"  id="date" name="date" placeholder="hasta" style="width:120px;"/>&nbsp;&nbsp;&nbsp;
-                <input type="text"  placeholder="Nombre evento" style="width:200px;">
+                <input type="text"  id="myInput" onkeyup="myFunction()" placeholder="Nombre evento" style="width:200px;">
               </div>
             </div>
           </div>
@@ -88,5 +88,23 @@
     </div>
   </div>
   <!-- Fin Modal -->
+
+  <script>
+    function myFunction() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("mul");
+        li = ul.getElementsByTagName("li");
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("div")[0];
+            if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+  </script>
 
 {% endblock %}

@@ -17,19 +17,12 @@ class DefaultController extends Controller
         return $this->render('default/index.html.twig',array("eventos"=>$evento));
     }
 
-    public function loginAction(Request $request)
-    {
-      $authenticationUtils = $this->get('security.authentication_utils');
-      
-      return $this->render('default/defaultLogin.html.twig');
-    }
-
     public function passwordAction()
     {
         return $this->render('default/password.html.twig');
     }
 
-    public function manageAction()
+    public function gestorAction()
     {
         $repository = $this->getDoctrine()->getRepository('AcavallBundle:Event');
         $evento = $repository->findAll();

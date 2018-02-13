@@ -8,6 +8,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class UserType extends AbstractType
@@ -18,15 +21,14 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('username')
-        ->add('password')
-        ->add('email')
-        ->add('name')
-        ->add('surname')
-        ->add('phone')
-        ->add('verifyPassword')
-        ->add('personalDocument')
-        ->add('photo')
+        ->add('username', TextType::class)
+        ->add('password', PasswordType::class)
+        ->add('email', EmailType::class)
+        ->add('name', TextType::class)
+        ->add('surname', TextType::class)
+        ->add('phone', NumberType::class)
+        ->add('personalDocument', TextType::class)
+        ->add('photo', TextType::class)
         ->add('plainPassword', RepeatedType::class, array(
               'type' => PasswordType::class,
               'first_options'  => array('label' => 'Constraseña'),

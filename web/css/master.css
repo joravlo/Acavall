@@ -13,20 +13,18 @@ body {
   margin-top: 10%;
   border: 2px solid #ccc;
   width: 50%;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 input {
   width: 85%;
   font-size: 13pt;
-  margin: 0;
-  padding: 10px;
-  margin-left: 10px;
 }
 
 .input-group {
   padding-right: 8%;
   padding-left: 7%;
+  margin-bottom: 5px;
 }
 
 i {
@@ -38,16 +36,15 @@ i {
 }
 
 #recordar {
-  margin-left: 65%;
+  margin-left: 400px;
   color: #c8c22f;
-  font-weight: bold;
 }
 
 .enviar {
   margin-left: 40px;
   background-color: #6b6663;
   color: white;
-  padding: 10px 32px;
+  padding: 10px 35px;
   font-size: 20px;
 }
 
@@ -59,18 +56,17 @@ button:focus {
 /* Style the buttons inside the tab */
 .tab button {
   background-color: white;
-  border-color: #c8c22f;
+  border: solid 1px #c8c22f;
   color: #c8c22f;
   padding: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
   cursor: pointer;
   width: 40%;
-  margin-left: 6%;
   font-size: 20px;
+  margin: 20px 12px 20px 12px;
 }
 
 /* Create an active/current tablink class */
@@ -83,32 +79,27 @@ button:focus {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
   cursor: pointer;
   width: 40%;
-  margin-left: 6%;
   font-size: 20px;
+  margin: 20px 12px 20px 12px;
 }
 
 /* Style the tab content */
 .tabcontent {
     display: none;
-    padding: 6px 12px;
 }
 
 .login {
   background-color: #c8c22f;
   border: none;
   color: white;
-  padding: 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
   cursor: pointer;
   width: 40%;
-  margin-left: 5%;
   font-size: 20px;
 }
 .signup {
@@ -120,7 +111,6 @@ button:focus {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
   cursor: pointer;
   width: 40%;
   margin-left: 5%;
@@ -130,6 +120,7 @@ button:focus {
 #bienvenido {
   color: #6b6663;
   font-weight: bold;
+  margin-left:45px;
 }
 
 .verde {

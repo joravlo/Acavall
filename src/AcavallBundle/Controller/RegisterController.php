@@ -11,39 +11,55 @@ use AcavallBundle\Form\UserType;
 class RegisterController extends Controller
 {
 
-  public function registerAction(Request $request)
+  public function loginAction(Request $request)
   {
       // build the form
-      $user = new User();
-      $form = $this->createForm(UserType::class, $user);
+      $user  = new User();
+      $form1 = $this->createForm(UserType::class, $user);
+      $form2 = $this->createForm(UserType::class, $user);
 
-      // handle the submit (will only happen on POST)
-      $form->handleRequest($request);
-      if ($form->isSubmitted() && $form->isValid()) {
+      if ($request->isMethod('POST')) {
 
-        // Encode the password (you could also do this via Doctrine listener)
-        $password = $this->get('security.password_encoder')
-            ->encodePassword($user, $user->getPlainPassword());
-        $user->setPassword($password);
+        // handle the submit (will only happen on POST)
+        $form1->handleRequest($request);
+        $form2->handleRequest($request);
 
-        $role = ['ROLE_USER'];
-        $user->setRoles($role);
+        if ($form1->isSubmitted() && $form1->isValid()) {
 
-        $random = random_bytes(10);
-        $user->setVerifyCode(bin2hex($random));
+          // Encode the password (you could also do this via Doctrine listener)
+          $password = $this->get('security.password_encoder')
+              ->encodePassword($user, $user->getPlainPassword());
+          $user->setPassword($password);
 
-        // save the User
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->flush();
+          $role = ['ROLE_USER'];
+          $user->setRoles($role);
 
-        // return $this->redirectToRoute('replace_with_some_route');
+          $random = random_bytes(10);
+          $user->setVerifyCode(bin2hex($random));
+
+          $user->setVerifyPassword(false);
+
+          // save the User
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($user);
+          $em->flush();
+
+          // return $this->redirectToRoute('replace_with_some_route');
+
+        } else if ($form2->isSubmitted()) {
+          $authenticationUtils = $this->get('security.authentication_utils');
+        }
       }
 
-      return $this->render(
-          'default/register.html.twig',
-          array('form' => $form->createView())
+      return array(
+       'form1' => $form1->createView(),
+       'form2' => $form2->createView()
       );
+
+      /*return $this->render(
+          'default/login.html.twig',
+          array('form' => $form->createView())
+      );*/
   }
 
   public function urlcodeAction($ramCode)
