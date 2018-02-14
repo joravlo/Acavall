@@ -25,11 +25,11 @@ security:
             anonymous: ~
             provider: my_db_provider
             form_login:
-                login_path: /login
+                login_path: /register
                 check_path: /login
-            #logout:
-                #path: /logout
-                #invalidate_session: true
+            logout:
+                path: /logout
+                invalidate_session: true
 
         main:
             anonymous: ~

@@ -2,12 +2,13 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>LogIn</title>
+    <title>aCavall - LogIn</title>
     <link href="{{ asset('css/master.css')}}" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
   <body>
+
     <div class="contenido">
 
     <div class="w3-bar w3-black">
@@ -19,7 +20,26 @@
       </div>
     </div>
 
+    {% if error is defined %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if boolCode is defined %}
+      {% if boolCode %}
+        <div class="alert alert-success alert-dismissable fade show">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          La cuenta ha sido verificada correctamente.
+        </div>
+      {% else %}
+        <div class="alert alert-danger alert-dismissable fade show">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          Lo siento! la cuenta no ha sido verificada correctamente.
+        </div>
+      {% endif %}
+    {% endif %}
+
     <form action="{{ path('acavall_login') }}" method="post">
+
       <div id="login" class="tabcontent">
           <p id="bienvenido">Bienvenido de nuevo</p>
           <div class="input-group">
@@ -35,58 +55,68 @@
           <input type="submit" name="Enviar" class="enviar" value="Entrar">
       </div>
 
-      <div id="signup" class="tabcontent">
-            <p id="bienvenido">Bienvenido a Acavall</p>
-            <div class="input-group">
-              {{ form_widget(form1.name, { 'attr': {'class': 'form-control', 'placeholder': 'Nombre', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
-              <span style="background-color:white;" class="input-group-addon"><i class="far fa-user"></i></span>
-            </div>
-            <div class="input-group ">
-              {{ form_widget(form1.surname, { 'attr': {'class': 'form-control', 'placeholder': 'Apellidos', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
-              <span style="background-color:white;" class="input-group-addon"><i class="far fa-user"></i></span>
-            </div>
-            <div class="input-group ">
-              {{ form_widget(form1.username, { 'attr': {'class': 'form-control', 'placeholder': 'Nombre de usuario', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
-              <span style="background-color:white;" class="input-group-addon"><i class="far fa-user"></i></span>
-            </div>
-            <div class="input-group">
-              {{ form_widget(form1.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
-              <span style="background-color:white;" class="input-group-addon"><i class="fas fa-at"></i></span>
-            </div>
-            <div class="input-group">
-              {{ form_widget(form1.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Contraseña', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
-              <span style="background-color:white;" class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            </div>
-            <div class="input-group">
-              {{ form_widget(form1.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'Repetir contraseña', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
-              <span style="background-color:white;" class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            </div>
-            <div class="input-group">
-              {{ form_widget(form1.phone, { 'attr': {'class': 'form-control', 'placeholder': 'Telefono', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
-              <span style="background-color:white;" class="input-group-addon"><i class="fas fa-phone"></i></span>
-            </div>
-            <br>
-            <input type="submit" value="Registrarse" class="enviar">
-      </div>
     </form>
 
-    <script>
-    function openCity(evt, cityName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
+    <div id="signup" class="tabcontent">
 
-    // Get the element with id="defaultOpen" and click on it
-    document.getElementById("defaultOpen").click();
+        {{ form_start(form)}}
+
+          <p id="bienvenido">Bienvenido a Acavall</p>
+          <div class="input-group">
+            {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Nombre', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
+            <span style="background-color:white;" class="input-group-addon"><i class="far fa-user"></i></span>
+          </div>
+          <div class="input-group ">
+            {{ form_widget(form.surname, { 'attr': {'class': 'form-control', 'placeholder': 'Apellidos', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
+            <span style="background-color:white;" class="input-group-addon"><i class="far fa-user"></i></span>
+          </div>
+          <div class="input-group ">
+            {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'Nombre de usuario', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
+            <span style="background-color:white;" class="input-group-addon"><i class="far fa-user"></i></span>
+          </div>
+          <div class="input-group">
+            {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
+            <span style="background-color:white;" class="input-group-addon"><i class="fas fa-at"></i></span>
+          </div>
+          <div class="input-group">
+            {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Contraseña', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
+            <span style="background-color:white;" class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+          </div>
+          <div class="input-group">
+            {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'Repetir contraseña', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
+            <span style="background-color:white;" class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+          </div>
+          <div class="input-group">
+            {{ form_widget(form.phone, { 'attr': {'class': 'form-control', 'placeholder': 'Telefono', 'style': 'padding:10px; font-size:13pt; border-radius: 0px;'} }) }}
+            <span style="background-color:white;" class="input-group-addon"><i class="fas fa-phone"></i></span>
+          </div>
+          <br>
+          {{ form_widget(form.guardar,{ 'attr': {'class': 'enviar'} }) }}
+
+          {{form_row(form._token)}}
+
+        {{ form_end(form, {'render_rest':false})}}
+
+    </div>
+
+    <script>
+
+      function openCity(evt, cityName) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+              tabcontent[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablinks");
+          for (i = 0; i < tablinks.length; i++) {
+              tablinks[i].className = tablinks[i].className.replace(" active", "");
+          }
+          document.getElementById(cityName).style.display = "block";
+          evt.currentTarget.className += " active";
+      }
+      document.getElementById("defaultOpen").click();
+
     </script>
+
   </body>
 </html>

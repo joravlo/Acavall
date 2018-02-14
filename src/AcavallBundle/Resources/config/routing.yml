@@ -2,6 +2,10 @@ acavall_homepage:
     path:     /
     defaults: { _controller: AcavallBundle:Default:index }
 
+acavall_register:
+    path:     /register
+    defaults: { _controller: AcavallBundle:Register:register }
+
 acavall_login:
     path:     /login
     defaults: { _controller: AcavallBundle:Register:login }

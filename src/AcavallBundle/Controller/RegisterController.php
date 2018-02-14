@@ -11,55 +11,55 @@ use AcavallBundle\Form\UserType;
 class RegisterController extends Controller
 {
 
-  public function loginAction(Request $request)
+  public function registerAction(Request $request)
   {
-      // build the form
+
       $user  = new User();
-      $form1 = $this->createForm(UserType::class, $user);
-      $form2 = $this->createForm(UserType::class, $user);
+      $form = $this->createForm(UserType::class, $user);
 
-      if ($request->isMethod('POST')) {
+      $form->handleRequest($request);
 
-        // handle the submit (will only happen on POST)
-        $form1->handleRequest($request);
-        $form2->handleRequest($request);
+      if ($form->isSubmitted() && $form->isValid()) {
 
-        if ($form1->isSubmitted() && $form1->isValid()) {
+        // Encode the password (you could also do this via Doctrine listener)
+        $password = $this->get('security.password_encoder')
+            ->encodePassword($user, $user->getPlainPassword());
+        $user->setPassword($password);
 
-          // Encode the password (you could also do this via Doctrine listener)
-          $password = $this->get('security.password_encoder')
-              ->encodePassword($user, $user->getPlainPassword());
-          $user->setPassword($password);
+        $role = ['ROLE_USER'];
+        $user->setRoles($role);
 
-          $role = ['ROLE_USER'];
-          $user->setRoles($role);
+        $random = random_bytes(10);
+        $user->setVerifyCode(bin2hex($random));
 
-          $random = random_bytes(10);
-          $user->setVerifyCode(bin2hex($random));
+        $user->setVerifyPassword(false);
 
-          $user->setVerifyPassword(false);
+        // save the User
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
 
-          // save the User
-          $em = $this->getDoctrine()->getManager();
-          $em->persist($user);
-          $em->flush();
-
-          // return $this->redirectToRoute('replace_with_some_route');
-
-        } else if ($form2->isSubmitted()) {
-          $authenticationUtils = $this->get('security.authentication_utils');
-        }
+        return $this->redirectToRoute('acavall_homepage');
       }
 
-      return array(
-       'form1' => $form1->createView(),
-       'form2' => $form2->createView()
-      );
-
-      /*return $this->render(
+      return $this->render(
           'default/login.html.twig',
           array('form' => $form->createView())
-      );*/
+      );
+  }
+
+
+  public function loginAction(Request $request)
+  {
+    $authenticationUtils = $this->get('security.authentication_utils');
+
+    $error = $authenticationUtils->getLastAuthenticationError();
+    $lastUsername = $authenticationUtils->getLastUsername();
+
+    return $this->render('default/login.html.twig', array(
+        'last_username' => $lastUsername,
+        'error'         => $error,
+    ));
   }
 
   public function urlcodeAction($ramCode)
