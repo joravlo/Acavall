@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Actualizar {{event.id}}{% endblock %}
+{% block title %}Actualizar Evento{% endblock %}
 
 {% block stylesheets %}
   <link rel="stylesheet" href="{{ asset('css/createEvent.css') }}">
@@ -20,7 +20,7 @@
   <div class="container">
 
     <div class="container-fluid formHeader">
-      <h1>Actualizar {{event.id}}</h1>
+      <h1>Actualizar {{event.name}}</h1>
     </div>
 
     <div class="form">
@@ -96,7 +96,7 @@
          </div>
        </div>
 
-      {{ form_widget(form.submit, { 'label': 'Crear Evento' ,'id': 'submitEvent','attr': {'class': 'btn'} }) }}
+      {{ form_widget(form.submit, { 'label': 'Actualizar' ,'id': 'submitEvent','attr': {'class': 'btn'} }) }}
       {{ form_end(form) }}
     </div>
   </div>
