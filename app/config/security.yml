@@ -1,17 +1,35 @@
 # To get started with security, check out the documentation:
 # https://symfony.com/doc/current/security.html
 security:
+    encoders:
+        AcavallBundle\Entity\User:
+            algorithm: bcrypt
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         in_memory:
             memory: ~
+        my_db_provider:
+            entity:
+                class: AcavallBundle:User
+                property: username
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+        usuarios:
+            pattern: ^/
+            anonymous: ~
+            provider: my_db_provider
+            form_login:
+                login_path: /register
+                check_path: /login
+            logout:
+                path: /logout
+                invalidate_session: true
 
         main:
             anonymous: ~
@@ -22,3 +40,7 @@ security:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
+
+    access_control:
+          - {path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+          - {path: ^/manage, roles: ROLE_ADMIN}

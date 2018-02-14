@@ -11,9 +11,9 @@
 
 {% block body %}
   <div class="container general" style="padding:0px;">
-    <ul class="list-group">
+    <ul id="mul" class="list-group">
 
-      <li class="list-group-item list-head" style="border-radius:0px; height:70px;">
+      <div class="list-head">
         <div class="row">
           <div class="col-md-2"><h5>Eventos<h5></div>
 
@@ -22,25 +22,27 @@
               <div class="form-group">
                 <input type="text"  id="date" name="date" placeholder="Desde" style="width:120px;"/>&nbsp; / &nbsp;
                 <input type="text"  id="date" name="date" placeholder="hasta" style="width:120px;"/>&nbsp;&nbsp;&nbsp;
-                <input type="text"  placeholder="Nombre evento" style="width:200px;">
+                <input type="text"  id="myInput" onkeyup="filtrar()" placeholder="Nombre evento" style="width:200px;">
               </div>
             </div>
           </div>
 
           <div class="col-md-3">
             <button id="eventFilter" style="color:white; margin-left:40px" type="button" class="btn btn-outline-secondary btn-sm">Filtrar</button>
-            <button style="color:white;" type="button" class="btn btn-outline-secondary btn-sm">Nuevo evento</button>
+            <a style="text-decoration:none;" href="{{ path('event_add') }}">
+              <button style="color:white;" type="button" class="btn btn-outline-secondary btn-sm">Nuevo evento</button>
+            </a>
           </div>
         </div>
-      </li>
+      </div>
 
-      <li class="list-group-item">
+      <div style="padding:10px; background:white; border: 1px solid #ECE9E8;">
         <div class="row" style="color:grey;">
-          <div class="col-md-2 text-center"><b>Id</b></div>
+          <div class="col-md-2 text-center" style="margin-left:12px;"><b>Id</b></div>
           <div class="col-md-2 text-center"><b>Nombre</b></div>
           <div class="col-md-8"></div>
         </div>
-      </li>
+      </div>
 
       {% for evento in eventos %}
 
@@ -52,8 +54,10 @@
               <a style="text-decoration:none;" href="{{ path('event_update',{ 'eventId': evento.id }) }}">
                 <button type="button" class="btn btn-warning btn-sm" style="color:white;">Editar</button>
               </a>
-              <button type="button" class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#myModal">Eliminar</button>
-              <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal">Publicar</button>
+              <a id="{{ evento.id }}" href="#modalDelete" data-toggle="modal">
+                <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+              </a>
+              <button type="button" class="btn btn-success btn-sm">Publicar</button>
             </div>
           </div>
         </li>
@@ -73,7 +77,7 @@
   </div>
 
   <!-- Modal Eliminar -->
-  <div class="modal fade" id="myModal">
+  <div class="modal" id="modalDelete">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-body">
@@ -81,7 +85,7 @@
         <p>Seguro que desea eliminar este evento?</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn" style="color:white; background:#c8c22f;">Aceptar</button>
+          <button type="button" onclick="functDelete()" class="btn" style="color:white; background:#c8c22f;">Aceptar</button>
           <button type="button" class="btn " style="color:white; background:#c8c22f;" data-dismiss="modal">Rechazar</button>
         </div>
       </div>
@@ -89,4 +93,40 @@
   </div>
   <!-- Fin Modal -->
 
+  <script>
+
+
+
+  function deleteEvent(eveId) {
+    $(function(){
+        $.ajax({
+          type: 'DELETE',
+          url: 'http://localhost:8000/api/deleteEvent/' + eveId,
+          success: function(data) {
+          }
+        })
+    });
+  }
+
+    function filtrar() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("mul");
+        li = ul.getElementsByTagName("li");
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("div")[0];
+            if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+
+    $('#modalDelete').on('show.bs.modal', function(e) {
+      var eveId = e.relatedTarget.id;
+      console.log(eveId);
+    });
+  </script>
 {% endblock %}

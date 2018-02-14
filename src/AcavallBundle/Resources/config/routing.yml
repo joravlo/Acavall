@@ -2,17 +2,21 @@ acavall_homepage:
     path:     /
     defaults: { _controller: AcavallBundle:Default:index }
 
+acavall_register:
+    path:     /register
+    defaults: { _controller: AcavallBundle:Register:register }
+
 acavall_login:
     path:     /login
-    defaults: { _controller: AcavallBundle:Default:login }
+    defaults: { _controller: AcavallBundle:Register:login }
 
 acavall_password:
     path:     /password
     defaults: { _controller: AcavallBundle:Default:password }
 
-acavall_manage:
-    path:     /manage
-    defaults: { _controller: AcavallBundle:Default:manage }
+acavall_gestor:
+    path:     /gestor
+    defaults: { _controller: AcavallBundle:Default:gestor }
 
 acavall_event:
     path:     /event/{eventId}
@@ -25,3 +29,7 @@ acavall_buy:
 acavall_ticket:
     path:     /ticket
     defaults: { _controller: AcavallBundle:Default:ticket }
+
+acavall_code:
+    path:     /verifyCode/{ramCode}
+    defaults: { _controller: AcavallBundle:Register:urlcode }

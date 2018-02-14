@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         {% block stylesheets %}
         {% endblock %}
 
@@ -30,8 +31,8 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <form class="form-inline">
-              <a class="s my-2 my-sm-0" href="{{path('acavall_manage')}}" style="color:white; text-decoration:none; margin-right:10px;">Gestor</a>
-              <a class="s my-2 my-sm-0" href="{{path('acavall_login')}}" style="color:white; text-decoration:none; margin-right:10px;">Unete!</a>
+              <a class="s my-2 my-sm-0" href="{{path('acavall_gestor')}}" style="color:white; text-decoration:none; margin-right:10px;">Gestor</a>
+              <a class="s my-2 my-sm-0" href="{{path('acavall_register')}}" style="color:white; text-decoration:none; margin-right:10px;">Unete!</a>
             </form>
           </nav>
 
@@ -63,7 +64,7 @@
       		</div>
       	</footer>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 
