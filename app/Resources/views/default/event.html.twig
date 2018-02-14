@@ -25,7 +25,7 @@
       <div class="container">
         <div class="row">
           {% if event.video is null %}
-            <img class="col-md-8 headerEvent img-fluid" src="{{ asset('img/fondo.jpg') }}" alt="Imagen del evento">
+            <img class="col-md-8 headerEvent img-fluid" src="{{asset('img/imagesEvents/' ~ event.image)}}" alt="Imagen del evento">
           {% else %}
           {% set youtube_header = 'https://www.youtube.com/watch?v=' %}
           {% set youtube_embed_header = 'https://www.youtube.com/embed/' %}

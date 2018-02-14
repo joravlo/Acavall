@@ -78,13 +78,18 @@ class Event
     /**
      * @var string
      *
+     */
+    private $dateText;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="price", type="decimal", precision=2, scale=0)
      */
     private $price;
 
     /**
      * @var string
-     * @Assert\Blank()
      * @ORM\Column(name="video", type="string", length=255, nullable=true)
      */
     private $video;
@@ -140,6 +145,31 @@ class Event
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Event
+     */
+    public function setDateText($dateText)
+    {
+        $this->dateText = $dateText;
+        $this->date = new \DateTime($dateText);
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDateText()
+    {
+        return $this->dateText;
     }
 
     /**
@@ -199,7 +229,7 @@ class Event
      */
     public function setDate($date)
     {
-        $this->date = $date;
+        $this->date = $date|date('Y-m-d H:i:s');
 
         return $this;
     }
@@ -412,7 +442,7 @@ class Event
     public function setPublish($publish)
     {
         $this->publish = $publish;
-    
+
         return $this;
     }
 
