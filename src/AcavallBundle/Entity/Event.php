@@ -90,6 +90,13 @@ class Event
     private $video;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="publish", type="boolean")
+     */
+    private $publish;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255)
@@ -393,5 +400,29 @@ class Event
     public function getLocalName()
     {
         return $this->localName;
+    }
+
+    /**
+     * Set publish
+     *
+     * @param boolean $publish
+     *
+     * @return Event
+     */
+    public function setPublish($publish)
+    {
+        $this->publish = $publish;
+    
+        return $this;
+    }
+
+    /**
+     * Get publish
+     *
+     * @return boolean
+     */
+    public function getPublish()
+    {
+        return $this->publish;
     }
 }
