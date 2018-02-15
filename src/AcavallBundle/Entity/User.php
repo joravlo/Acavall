@@ -3,6 +3,8 @@
 namespace AcavallBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AcavallBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -27,6 +29,13 @@ class User
      * @ORM\Column(name="username", type="string", length=255)
      */
     private $username;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="roles", type="json_array")
+     */
+    private $roles = array();
 
     /**
      * @var string
@@ -85,6 +94,19 @@ class User
     private $verifyPassword;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="verifyCode", type="string", length=255, nullable=true)
+     */
+    private $verifyCode;
+
+    /**
      * @ORM\OneToMany(targetEntity="Ticket", mappedBy="user")
      */
     private $tickets;
@@ -98,6 +120,19 @@ class User
     {
         return $this->id;
     }
+
+    /**
+     * Set roles
+     *
+     * @param string $roles
+     *
+     * @return User
+     */
+     public function setRoles(array $roles)
+     {
+         $this->roles = $roles;
+         return $this;
+     }
 
     /**
      * Set username
@@ -314,6 +349,55 @@ class User
     {
         return $this->verifyPassword;
     }
+
+    /**
+     * Set verifyCode
+     *
+     * @param string $verifyCode
+     *
+     * @return User
+     */
+    public function setVerifyCode($verifyCode)
+    {
+        $this->verifyCode = $verifyCode;
+
+        return $this;
+    }
+
+    /**
+     * Get verifyCode
+     *
+     * @return string
+     */
+    public function getVerifyCode()
+    {
+        return $this->verifyCode;
+    }
+
+    public function getPlainPassword()
+   {
+       return $this->plainPassword;
+   }
+
+   public function setPlainPassword($password)
+   {
+       $this->plainPassword = $password;
+   }
+
+   public function getSalt()
+    {
+        // The bcrypt algorithm doesn't require a separate salt.
+        // You *may* need a real salt if you choose a different encoder.
+        return null;
+    }
+
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    public function eraseCredentials(){}
+
     /**
      * Constructor
      */
@@ -355,4 +439,5 @@ class User
     {
         return $this->tickets;
     }
+
 }
