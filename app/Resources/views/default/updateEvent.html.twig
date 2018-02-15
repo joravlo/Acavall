@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Crear Evento{% endblock %}
+{% block title %}Actualizar Evento{% endblock %}
 
 {% block stylesheets %}
   <link rel="stylesheet" href="{{ asset('css/createEvent.css') }}">
@@ -20,7 +20,7 @@
   <div class="container">
 
     <div class="container-fluid formHeader">
-      <h1>Crear Evento</h1>
+      <h1>Actualizar {{event.name}}</h1>
     </div>
 
     <div class="form">
@@ -74,9 +74,15 @@
          {{ form_label(form.image, "Imagen",{'label_attr': {'class': 'custom-file-label'}}) }}
        </div>
 
+       {% if urlFoto is defined %}
+       <div id="imageContainer" class="imageContainerVisible row">
+         <img id="imagePreview" onerror="this.alt=''" class="col-md-6" src="{{asset('img/imagesEvents/' ~ urlFoto)}}" alt="Imagen del evento">
+       </div>
+       {% else %}
        <div id="imageContainer" class="imageContainer row">
          <img id="imagePreview" onerror="this.alt=''" class="col-md-6" src="" alt="Imagen del evento">
        </div>
+       {% endif %}
 
        <div class="form-group">
          {{ form_label(form.video, "Video (URL)") }}
@@ -90,7 +96,7 @@
          </div>
        </div>
 
-      {{ form_widget(form.submit, { 'label': 'Crear Evento' ,'id': 'submitEvent','attr': {'class': 'btn'} }) }}
+      {{ form_widget(form.submit, { 'label': 'Actualizar' ,'id': 'submitEvent','attr': {'class': 'btn'} }) }}
       {{ form_end(form) }}
     </div>
   </div>

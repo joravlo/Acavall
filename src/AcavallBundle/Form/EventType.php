@@ -9,7 +9,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 class EventType extends AbstractType
 {
     /**
@@ -18,16 +22,20 @@ class EventType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', TextType::class)
-        ->add('description', TextType::class)
+        ->add('description', TextareaType::class)
         ->add('address', TextType::class)
         ->add('localName', TextType::class)
-        ->add('capacity', TextType::class)
-        ->add('date', DateType::class, array('widget' => 'choice'))
-        ->add('price', TextType::class, array('label' => 'Precio de la entrada'))
+        ->add('capacity', NumberType::class)
+        ->add('dateText', TextType::class)
+        ->add('price', MoneyType::class)
         ->add('video', TextType::class, array('required' => false))
-        ->add('image', TextType::class)
+        ->add('image', FileType::class)
         ->add('categories')
-        ->add('Crear evento',SubmitType::class);
+        ->add('publish',CheckboxType::class, array(
+          'label'    => '¿Desea publicar el evento?',
+          'required' => false,
+))
+        ->add('submit',SubmitType::class);
     }/**
      * {@inheritdoc}
      */

@@ -78,16 +78,28 @@ class Event
     /**
      * @var string
      *
+     */
+    private $dateText;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="price", type="decimal", precision=2, scale=0)
      */
     private $price;
 
     /**
      * @var string
-     * @Assert\Blank()
      * @ORM\Column(name="video", type="string", length=255, nullable=true)
      */
     private $video;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="publish", type="boolean")
+     */
+    private $publish;
 
     /**
      * @var string
@@ -133,6 +145,31 @@ class Event
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Event
+     */
+    public function setDateText($dateText)
+    {
+        $this->dateText = $dateText;
+        $this->date = new \DateTime($dateText);
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDateText()
+    {
+        return $this->dateText;
     }
 
     /**
@@ -192,7 +229,7 @@ class Event
      */
     public function setDate($date)
     {
-        $this->date = $date;
+        $this->date = $date|date('Y-m-d H:i:s');
 
         return $this;
     }
@@ -393,5 +430,29 @@ class Event
     public function getLocalName()
     {
         return $this->localName;
+    }
+
+    /**
+     * Set publish
+     *
+     * @param boolean $publish
+     *
+     * @return Event
+     */
+    public function setPublish($publish)
+    {
+        $this->publish = $publish;
+
+        return $this;
+    }
+
+    /**
+     * Get publish
+     *
+     * @return boolean
+     */
+    public function getPublish()
+    {
+        return $this->publish;
     }
 }

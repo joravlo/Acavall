@@ -6,6 +6,14 @@ event:
     resource: "@AcavallBundle/Resources/config/eventRouting.yml"
     prefix:   /admin
 
+logout:
+    path:   /logout
+
+api:
+    resource: "@AcavallBundle/Resources/config/apiRouting.yml"
+    prefix:   /api
+
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation

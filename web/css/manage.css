@@ -1,12 +1,16 @@
 body{
   background:#EDEDED;
 }
+
 .general {
   margin-top:20px;
 }
 .list-head{
   background: grey;
   color: white;
+  padding: 20px;
+  border-radius:0px;
+  height:70px;
 }
 .btn-outline-secondary,
 .btn-outline-secondary:focus {

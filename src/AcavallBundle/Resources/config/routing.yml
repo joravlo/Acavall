@@ -34,6 +34,7 @@ acavall_code:
     path:     /verifyCode/{ramCode}
     defaults: { _controller: AcavallBundle:Register:urlcode }
 
+
 acavall_emailRegister:
     path:     /emailRegister/{id}/{name}
     defaults: { _controller: AcavallBundle:Default:emailRegister }

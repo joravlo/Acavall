@@ -16,4 +16,82 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
            ->innerJoin('e.categories', 'c', 'WITH', 'c.id = :idCategory')
            ->setParameter('idCategory', $category)->getQuery()->getResult();
   }
+
+  public function getEvetsToday()
+  {
+    $todayDate = new \DateTime("now");
+    $todayFormat = $todayDate->format('Y-m-d');
+    $qb = $this->createQueryBuilder('e')
+    ->andWhere('e.date >= :todayFirst')
+            ->andWhere('e.date <= :semanaViene')
+            ->setParameter('todayFirst', $todayFormat . " 00:00:00")
+            ->setParameter('semanaViene', $todayFormat . " 23:59:59")
+            ->getQuery();
+
+            return $qb->getResult();
+  }
+
+  public function getEvetsTomorrow()
+  {
+    $tomorrowDate = new \DateTime("now");
+    $tomorrowDate->modify('+1 day');
+    $tomorrowFormat = $tomorrowDate->format('Y-m-d');
+    $qb = $this->createQueryBuilder('e')
+    ->andWhere('e.date >= :todayFirst')
+            ->andWhere('e.date <= :semanaViene')
+            ->setParameter('todayFirst', $tomorrowFormat . " 00:00:00")
+            ->setParameter('semanaViene', $tomorrowFormat . " 23:59:59")
+            ->getQuery();
+
+            return $qb->getResult();
+  }
+
+  public function getEventsThisWeek()
+  {
+    $day = date('w');
+    $week_start = date('Y-m-d', strtotime('-'.(1-$day).' days'));
+    $week_end = date('Y-m-d', strtotime('+'.(7-$day).' days'));
+
+    $qb = $this->createQueryBuilder('e')
+    ->andWhere('e.date >= :firstDay')
+            ->andWhere('e.date <= :lastDay')
+            ->setParameter('firstDay', $week_start . " 00:00:00")
+            ->setParameter('lastDay', $week_end . " 23:59:59")
+            ->getQuery();
+
+            return $qb->getResult();
+  }
+
+  public function getEventsThisWeekend()
+  {
+    $day = date('w');
+    $weekend_start = date('Y-m-d', strtotime('+'.(6-$day).' days'));
+    $weekend_end = date('Y-m-d', strtotime('+'.(7-$day).' days'));
+
+    $qb = $this->createQueryBuilder('e')
+    ->andWhere('e.date >= :firstDay')
+            ->andWhere('e.date <= :lastDay')
+            ->setParameter('firstDay', $weekend_start . " 00:00:00")
+            ->setParameter('lastDay', $weekend_end . " 23:59:59")
+            ->getQuery();
+
+            return $qb->getResult();
+  }
+
+  public function getEventsThisMonth()
+  {
+    $month_start = new \DateTime('first day of this month');
+    $month_start_format = $month_start->format('Y-m-d');
+    $month_end = new \DateTime('last day of this month');
+    $month_end_format = $month_end->format('Y-m-d');
+
+    $qb = $this->createQueryBuilder('e')
+    ->andWhere('e.date >= :firstDay')
+            ->andWhere('e.date <= :lastDay')
+            ->setParameter('firstDay', $month_start_format . " 00:00:00")
+            ->setParameter('lastDay', $month_end_format . " 23:59:59")
+            ->getQuery();
+
+            return $qb->getResult();
+  }
 }
