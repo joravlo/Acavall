@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 use AcavallBundle\Entity\Event;
+use AcavallBundle\Entity\Ticket;
+use AcavallBundle\Form\TicketType;
 
 class DefaultController extends Controller
 {
@@ -40,9 +42,19 @@ class DefaultController extends Controller
         return $this->render('default/event.html.twig',array('event'=>$event,'eventsCategory'=>$eventsCategory));
     }
 
-    public function buyAction()
+    public function buyAction(Request $request, $id)
     {
-        return $this->render('default/ticket.html.twig');
+      $event = $this->getDoctrine()->getRepository(Event::class)->findOneById($id);
+
+      $ticket=$this->getDoctrine()->getRepository(Ticket::class)->find($id);
+      $form=$this->createForm(TicketType::class, $ticket);
+      $form->handleRequest($request);
+      if ($form->isSubmitted() && $form->isValid()) {
+       $em = $this->getDoctrine()->getManager();
+       $em->persist($ticket);
+       $em->flush();
+     }
+      return $this-> render('default/ticket.html.twig', array('event'=>$event));
     }
 
     public function ticketAction()
@@ -95,4 +107,8 @@ class DefaultController extends Controller
 
     return $this->render('default/email.html.twig');
     }
+
+
+
+
 }

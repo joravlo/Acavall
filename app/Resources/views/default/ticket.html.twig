@@ -7,7 +7,7 @@
     <script src="../js/compra.js"></script>
     <link rel="stylesheet" href="../css/ticket.css">
   </head>
-  <body>
+  <body onload="sumarPrecio">
     <div class="todo">
       <p>COMPRAR ENTRADAS</p>
         <form id="todo">
@@ -29,7 +29,7 @@
                   <option value="5" id="5">5</option>
                 </select>
               </td>
-              <td id="preciotexto" class="form-group" style="font-size: 15px; text-align: center;">18€</td>
+              <td id="preciotexto" class="form-group" style="font-size: 15px; text-align: center;">{{event.price}}€</td>
             </tr>
             <tr>
               <td class="form-group"><b>¿Niño o adulto?</b></td>
@@ -79,8 +79,9 @@
             <tr>
               <td class="form-group"><b>TOTAL</b> impuestos incluidos</td>
               <td class="form-group"> </td>
-              <td class="form-group"><b id="precio">19,80€</b></td>
+              <td class="form-group"><b id="precio">{{event.price * 0.21 + event.price}}€</b></td>
             </tr>
+
           </table>
           <br><br>
 
@@ -88,7 +89,7 @@
         <br><br>
         <div id="divMultiInputs">
        </div>
-
+       <input type="hidden" class="form-control" value="{{ 'now'|date('d - m -Y') }}" id="inputCity">
        </form>
        <input type="submit" name="enviar" value="Continuar" class="enviar">
     </div>

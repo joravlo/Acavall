@@ -1,7 +1,6 @@
 
 function multiplicarInputs(text){
       var num = document.getElementById("numero").value;
-      console.log(num);
       var div=document.getElementById("todo").innerHTML;
       if (num>1) {
         for (var i=2;i<num;i++){
@@ -20,4 +19,9 @@ function nuevoCampo() {
     }else if (select=="adulto") {
       document.getElementById("formniño").style.visibility = "collapse";
     }
+}
+
+function sumarPrecio(text) {
+  var precio = document.getElementById('precio').value;
+  console.log(precio);
 }
