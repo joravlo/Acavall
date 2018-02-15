@@ -5,6 +5,10 @@
   <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 {% endblock %}
 
+{% block javascripts %}
+  <script src="{{ asset('js/index.js') }}" type="text/javascript"></script>
+{% endblock %}
+
 {% block body %}
   <div id="general" class="container">
     <div class="row">
@@ -15,27 +19,27 @@
         <fieldset class="form-group">
           <div class="form-check tit">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="fecha" value="todas" checked>
+              <input type="radio" onclick="filterForDate('getAllEvents');" class="form-check-input" name="input" value="todas" checked>
               Todas las fechas
             </label><br>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="fecha" value="hoy">
+              <input type="radio" onclick="filterForDate('getEventsToday');" id="today" class="form-check-input" name="input" value="hoy">
               Hoy
             </label><br>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="fecha" value="mañana">
+              <input type="radio" onclick="filterForDate('getEventsTomorrow');" id="tomorrow" class="form-check-input" name="input" value="mañana">
               Mañana
             </label><br>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="fecha" value="esta semana">
+              <input type="radio" onclick="filterForDate('getEventsTomorrow');" id="thisWeek" class="form-check-input" name="input" value="esta semana">
               Esta semana
             </label><br>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="fecha" value="este fin de semana">
+              <input type="radio" onclick="filterForDate('getEventsThisWeekend');" id="thisWeekend" class="form-check-input" name="input" value="este fin de semana">
               Este fin de semana <br>
             </label><br>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="fecha" value="este mes">
+              <input type="radio" onclick="filterForDate('getEventsThisMonth');" id="thisMonth" class="form-check-input" name="input" value="este mes">
               Este mes
             </label>
           </div>
@@ -45,15 +49,15 @@
         <fieldset class="form-group">
           <div class="form-check tit">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="participantes" value="niños y niñas">
+              <input type="radio" class="form-check-input" name="input" value="niños y niñas">
               Niños y niñas
             </label><br>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="participantes" value="adultos">
+              <input type="radio" class="form-check-input" name="input" value="adultos">
               Adultos
             </label><br>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="participantes" value="familia">
+              <input type="radio" class="form-check-input" name="input" value="familia">
               Familia <br>
             </label>
           </div>
@@ -63,23 +67,23 @@
         <fieldset class="form-group tit">
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="animales" value="todos los animales">
+              <input type="radio" class="form-check-input" name="input" value="todos los animales">
               Todos los animales
             </label><br>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="animales" value="gatos">
+              <input type="radio" class="form-check-input" name="input" value="gatos">
               Gatos
             </label><br>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="animales" value="perros">
+              <input type="radio" class="form-check-input" name="input" value="perros">
               Perros
             </label><br>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="animales" value="pequeños animales">
+              <input type="radio" class="form-check-input" name="input" value="pequeños animales">
               Pequeños animales
             </label><br>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="animales" value="animales silvestres">
+              <input type="radio" class="form-check-input" name="input" value="animales silvestres">
               Animales silvestres
             </label>
           </div>
@@ -89,11 +93,11 @@
         <fieldset class="form-group tit">
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="actividades" value="inclusivas">
+              <input type="radio" class="form-check-input" name="input" value="inclusivas">
               Inclusivas <br>
             </label>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="actividades" value="accesibles para silla de ruedas">
+              <input type="radio" class="form-check-input" name="input" value="accesibles para silla de ruedas">
               Accesibles para silla de ruedas <br>
             </label>
           </div>
@@ -101,14 +105,14 @@
 
       </div><br><br>
 
-      <div class="col-md-9">
+      <div id="cardListContainer" class="col-md-9">
 
         {% for evento in eventos %}
 
           <div class="card cardFormat">
 
             <div class="contImg">
-              <img class="card-img-top" width="100px" height="130px" src="{{asset('img/imagesEvents/' ~ evento.image)}}" alt="Imagen card evento">
+              <img class="card-img-top" width="100px" height="130px" onerror="this.src='{{asset('img/acavall.jpg')}}';" src="{{asset('img/imagesEvents/' ~ evento.image)}}" alt="Imagen card evento">
             </div>
 
             <div class="card-block">

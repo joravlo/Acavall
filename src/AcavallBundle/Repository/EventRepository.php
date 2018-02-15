@@ -49,9 +49,10 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
   public function getEventsThisWeek()
   {
     $day = date('w');
-    $week_start = date('Y-m-d', strtotime('-'.(1-$day).' days'));
+    var_dump($day);
+    $week_start = date('Y-m-d', strtotime('-'.($day-1).' days'));
     $week_end = date('Y-m-d', strtotime('+'.(7-$day).' days'));
-
+    var_dump($week_start . " to " . $week_end);
     $qb = $this->createQueryBuilder('e')
     ->andWhere('e.date >= :firstDay')
             ->andWhere('e.date <= :lastDay')
