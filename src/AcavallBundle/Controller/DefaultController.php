@@ -54,22 +54,12 @@ class DefaultController extends Controller
         return $this->render('default/entrada.html.twig');
     }
 
-    public function emailRegistryAction($name)
+    public function emailRegistryAction($id)
 {
-    $message = (new \Swift_Message('Email de Registro'))
-        ->setFrom('pruebaacavall@gmail.com')
-        ->setTo('joravlo@gmail.com')
-        ->setBody(
-            $this->renderView(
-                'default/emailregistro.html.twig',
-                array('name' => $name)
-            ),
-            'text/html'
-        )
-    ;
-    $this->get('mailer')->send($message);
+    $repository = $this->getDoctrine()->getRepository('AcavallBundle:User');
+    $usuario = $repository->findOneById($id);
+    return $this->render('default/emailregistro.html.twig',array('usuarios' =>$usuario ));
 
-    return $this->render('default/email.html.twig');
 }
 
 public function emailTicketAction($name)
@@ -89,7 +79,7 @@ $message = (new \Swift_Message('Email de Registro'))
 ;
 $this->get('mailer')->send($message);
 
-return $this->render('default/email.html.twig');
+
 }
 
     public function emailPasswordAction($name)

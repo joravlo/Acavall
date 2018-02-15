@@ -44,16 +44,21 @@
     </style>
   </head>
   <body>
+    {% for usuario in usuarios %}
+    {{ usuarios.verifyCode }}
+    {% endfor %}
     <br><br>
     <div class="content">
       <br>
       <img src="{{asset('img/logoNav.PNG')}}" alt="Logo" class="logo">
       <h1>Confirma tu correo electronico</h1>
-      <h3>Hola {{ name }}, gracias por registrarte</h3>
+      <h3>Hola , gracias por registrarte</h3>
       <p>Te esperamos para los diferentes eventos que tenemos preparados</p>
       <p>Para poder empezar a apuntarte a los eventos haz click en el siguiente boton</p>
       <br>
-      <button class="boton" type="button" class="btn btn-primary">Confirmar mi cuenta <img src="{{asset('img/flechas.png')}}" alt=""> </button>
+
+      <button class="boton" type="button" class="btn btn-primary" href="localhost:8000/register/">Confirmar mi cuenta <img src="{{asset('img/flechas.png')}}" alt=""> </button>
+
       <br><br>
     </div>
   </body>

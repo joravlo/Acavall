@@ -27,7 +27,7 @@ acavall_ticket:
     defaults: { _controller: AcavallBundle:Default:ticket }
 
 acavall_emailRegistry:
-    path:     /emailRegistry/{name}
+    path:     /emailRegistry/{id}
     defaults: { _controller: AcavallBundle:Default:emailRegistry }
 
 acavall_emailPassword:
