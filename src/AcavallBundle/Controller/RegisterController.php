@@ -38,7 +38,19 @@ class RegisterController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
         $em->flush();
+        $message = (new \Swift_Message('Email de Registro'))
 
+            ->setFrom('pruebaacavall@gmail.com')
+            ->setTo('joravlo@gmail.com')
+            ->setBody(
+                $this->renderView(
+                    'default/emailregistro.html.twig',
+                    array('name' => $user->getName())
+                ),
+                'text/html'
+            )
+        ;
+        $this->get('mailer')->send($message);
         return $this->redirectToRoute('acavall_homepage');
       }
 
