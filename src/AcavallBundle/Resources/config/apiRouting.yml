@@ -42,3 +42,8 @@ api_get_events_this_month:
     path:     /getEventsThisMonth
     defaults: { _controller: AcavallBundle:Api:getEventsThisMonth}
     methods:  [GET]
+
+api_get_publicar:
+    path:     /publicarEvent/{eventId}
+    defaults: { _controller: AcavallBundle:Api:publicarEvent}
+    methods:  [PUT]
