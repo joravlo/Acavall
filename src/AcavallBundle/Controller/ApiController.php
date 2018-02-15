@@ -230,4 +230,27 @@ class ApiController extends Controller
 
       return $response;
   }
+
+  public function publicarEventAction($eventId)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $event = $em->getRepository(Event::Class)->find($eventId);
+
+    $encoders = array(new JsonEncoder());
+    $normalizers = array(new ObjectNormalizer());
+    $serializer = new Serializer($normalizers, $encoders);
+
+    if (empty($event)) {
+      $jsonContent = $serializer->serialize(array('code' => 400,'message' => "No existe el evento"), 'json');
+      $response = JsonResponse::fromJsonString($jsonContent);
+    } else {
+      $event->setPublish(true);
+      $em->persist($event);
+      $em->flush();
+      $jsonContent = $serializer->serialize(array('code' => 200,'message' => "Publicado con exito"), 'json');
+      $response = JsonResponse::fromJsonString($jsonContent);
+    }
+
+      return $response;
+  }
 }

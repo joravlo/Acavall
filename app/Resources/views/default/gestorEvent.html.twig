@@ -57,7 +57,9 @@
               <a id="{{ evento.id }}" href="#modalDelete" data-toggle="modal">
                 <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
               </a>
-              <button type="button" class="btn btn-success btn-sm">Publicar</button>
+              <a id="{{ evento.id }}" href="#modalPost" data-toggle="modal">
+                <button type="button" class="btn btn-success btn-sm">Publicar</button>
+              </a>
             </div>
           </div>
         </li>
@@ -76,7 +78,7 @@
 
   </div>
 
-  <!-- Modal Eliminar -->
+  <!-- Modal eliminar -->
   <div class="modal" id="modalDelete">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -85,28 +87,54 @@
         <p>Seguro que desea eliminar este evento?</p>
         </div>
         <div class="modal-footer">
-          <button type="button" onclick="functDelete()" class="btn" style="color:white; background:#c8c22f;">Aceptar</button>
-          <button type="button" class="btn " style="color:white; background:#c8c22f;" data-dismiss="modal">Rechazar</button>
+          <a href="#" id="btnYD" class="btn danger">Yes</a>
+          <a href="#" data-dismiss="modal" aria-hidden="true" class="btn secondary">No</a>
         </div>
       </div>
     </div>
   </div>
-  <!-- Fin Modal -->
+
+  <!-- Modal publicar -->
+  <div class="modal" id="modalPost">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+        <h4>Acción publicar evento</h4><br>
+        <p>Seguro que desea publicar este evento?</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#" id="btnYP" class="btn danger">Yes</a>
+          <a href="#" data-dismiss="modal" aria-hidden="true" class="btn secondary">No</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script>
 
+    function deleteEvent(eveId) {
+      $(function(){
+          $.ajax({
+            type: 'DELETE',
+            url: 'http://localhost:8000/api/deleteEvent/' + eveId,
+            success: function(data) {
+               $('#modalDelete').modal('toggle');
+            }
+          })
+      });
+    }
 
+    function publicarEvent(eveId) {
+      $(function(){
+          $.ajax({
+            type: 'PUT',
+            url: 'http://localhost:8000/api/publicarEvent/' + eveId,
+            success: function(data) {
 
-  function deleteEvent(eveId) {
-    $(function(){
-        $.ajax({
-          type: 'DELETE',
-          url: 'http://localhost:8000/api/deleteEvent/' + eveId,
-          success: function(data) {
-          }
-        })
-    });
-  }
+            }
+          })
+      });
+    }
 
     function filtrar() {
         var input, filter, ul, li, a, i;
@@ -124,9 +152,21 @@
         }
     }
 
-    $('#modalDelete').on('show.bs.modal', function(e) {
-      var eveId = e.relatedTarget.id;
-      console.log(eveId);
+    $('#modalDelete').on('show.bs.modal', function (e) {
+      var eveIdD = e.relatedTarget.id;
+      $('#btnYD').click(function() {
+        deleteEvent(eveIdD);
+        //$('#modalDelete').modal('toggle');
+      });
     });
+
+    $('#modalPost').on('show.bs.modal', function (e) {
+      var eveIdP = e.relatedTarget.id;
+      $('#btnYP').click(function() {
+        publicarEvent(eveIdP);
+        //$('#modalDelete').modal('toggle');
+      });
+    });
+
   </script>
 {% endblock %}
