@@ -41,11 +41,12 @@ class RegisterController extends Controller
         $message = (new \Swift_Message('Email de Registro'))
 
             ->setFrom('pruebaacavall@gmail.com')
-            ->setTo('joravlo@gmail.com')
+            ->setTo($user->getEmail())
             ->setBody(
                 $this->renderView(
                     'default/emailregistro.html.twig',
-                    array('name' => $user->getName())
+                    array('name' => $user->getName(),
+                          'usuario' => $user)
                 ),
                 'text/html'
             )

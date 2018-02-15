@@ -60,14 +60,13 @@
     <br><br>
     <div class="content">
       <br>
-      <img src="{{asset('img/logoNav.PNG')}}" alt="Logo" class="logo">
+      <img src="{{ absolute_url(asset('img/acavall.jpg')) }}" alt="Logo" class="logo">
       <h1>Confirma tu correo electronico</h1>
-      <h3>Hola {name} , gracias por registrarte</h3>
+      <h3>Hola {{usuario.name}} , gracias por registrarte</h3>
       <p>Te esperamos para los diferentes eventos que tenemos preparados</p>
       <p>Para poder empezar a apuntarte a los eventos haz click en el siguiente boton</p>
       <br>
-
-      <button class="boton" type="button" class="btn btn-primary"><a href="{{path('acavall_code', {'ramCode':usuario.verifyCode})}}">Confirmar mi cuenta</a></button>
+      <button class="boton" type="button" class="btn btn-primary"><a href="http://localhost:8000/verifyCode/{{usuario.verifyCode}}">Confirmar mi cuenta</a></button>
 
       <br><br>
     </div>
