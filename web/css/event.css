@@ -99,10 +99,7 @@ body {
   margin-bottom: 50px;
 }
 
-.card {
-  background: white;
-}
-
+/* Crad map */
 .card p {
   display: flex;
   align-items: center
@@ -110,43 +107,74 @@ body {
   margin-bottom: 0;
   margin-left: 10px;
 }
-
-.card i {
-  font-size:24px;
-  color: #828B91;
-
-}
-
 .textAddress {
   color: #828B91;
 }
-
 .containerCardInfo {
   padding: 20px;
 }
-
 .cardInfoRow {
   padding: 0;
   vertical-align: middle;
   display: inline-block;
 }
-
 .cardInfoRow p {
   word-wrap: break-word;
 }
-
-
 .card iframe {
   width: 100%;
   height: 200px;
   border:0;
 }
 
-.textOtherEvents {
-  text-align: center;
-  margin-top: 50px;
+/* Card categorias */
+#contCard {
+  background:#F9F9F9;
+  padding-top:20px;
+  padding-bottom:15px;
 }
-
+#month {
+  background:grey;
+  color:white;
+  margin-bottom:0px;
+}
+#day { border:solid 0.5px grey; }
+#eveName {
+  padding-left:15px;
+  font-size:18px;
+}
+.btnC {
+  background:#c8c22f;
+  color:white;
+  width:120px;
+  height:40px;
+  border-radius:0;
+}
+.btnC:hover {
+  color:white;
+  opacity:0.7;
+}
+.tit { margin-top:-10px; }
+.cardFormat{
+  width: 16rem;
+  display:inline-block;
+  margin: 0px 8px 25px 8px;
+}
+.card:hover img {
+  -webkit-transform:scale(1.3);
+  transform:scale(1.3);
+  -webkit-filter: contrast(70%);
+}
+.contImg {
+  overflow:hidden;
+}
+.contImg img{
+  -webkit-transition:all .9s ease; /* Safari y Chrome */
+  -moz-transition:all .9s ease; /* Firefox */
+  -o-transition:all .9s ease; /* IE 9 */
+  -ms-transition:all .9s ease; /* Opera */
+  width:100%;
+}
 
 .containerBackground {
   height: 500px;
@@ -170,12 +198,19 @@ body {
   margin:-5px;
 }
 
+.textOtherEvents {
+  text-align: center;
+  margin-top: 50px;
+}
+
+
 .containerInfo {
     position: absolute;
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 40px;
     top: 50px;
     z-index: 1;
 }

@@ -72,14 +72,6 @@
       {{ knp_pagination_render(eventos) }}
     </div>
 
-    <!--<div class="pagination">
-      <a href="#">&laquo;</a>
-      <a href="#" class="active">1</a>
-      <a href="#">2</a>
-      <a href="#">3</a>
-      <a href="#">&raquo;</a>
-    </div>-->
-
   </div>
 
   <!-- Modal eliminar -->
@@ -122,7 +114,7 @@
             type: 'DELETE',
             url: 'http://localhost:8000/api/deleteEvent/' + eveId,
             success: function(data) {
-               $('#modalDelete').modal('toggle');
+
             }
           })
       });
@@ -134,7 +126,6 @@
             type: 'PUT',
             url: 'http://localhost:8000/api/publicarEvent/' + eveId,
             success: function(data) {
-
             }
           })
       });
@@ -160,7 +151,7 @@
       var eveIdD = e.relatedTarget.id;
       $('#btnYD').click(function() {
         deleteEvent(eveIdD);
-        //$('#modalDelete').modal('toggle');
+        deleteLine(eveIdD);
       });
     });
 
@@ -168,9 +159,20 @@
       var eveIdP = e.relatedTarget.id;
       $('#btnYP').click(function() {
         publicarEvent(eveIdP);
-        //$('#modalDelete').modal('toggle');
       });
     });
+
+    function deleteLine(eveId)
+    {
+      ul = document.getElementById("mul");
+      li = ul.getElementsByTagName("li");
+      for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("div")[0];
+        if (a.innerHTML.indexOf(eveId) > -1) {
+          li[i].style.display = "none";
+        }
+      }
+    }
 
   </script>
 {% endblock %}

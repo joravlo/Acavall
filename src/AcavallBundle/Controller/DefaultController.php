@@ -42,9 +42,12 @@ class DefaultController extends Controller
       $em = $this->getDoctrine()->getManager();
       $event = $em->getRepository(Event::Class)->find($eventId);
 
-      $eventsCategory = $em->getRepository(Event::Class)->getEvetsByCategory($event->getCategories()[0]->getId());
-
+      if ($event->getCategories() != null) {
+        $eventsCategory = $em->getRepository(Event::Class)->getEvetsByCategory($event->getCategories()[0]->getId());
         return $this->render('default/event.html.twig',array('event'=>$event,'eventsCategory'=>$eventsCategory));
+      } else {
+        return $this->render('default/event.html.twig',array('event'=>$event));
+      }
     }
 
     public function buyAction()
