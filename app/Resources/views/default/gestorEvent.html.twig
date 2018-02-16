@@ -68,13 +68,17 @@
 
     </ul>
 
-    <div class="pagination">
+    <div class="navigation">
+      {{ knp_pagination_render(eventos) }}
+    </div>
+
+    <!--<div class="pagination">
       <a href="#">&laquo;</a>
       <a href="#" class="active">1</a>
       <a href="#">2</a>
       <a href="#">3</a>
       <a href="#">&raquo;</a>
-    </div>
+    </div>-->
 
   </div>
 
@@ -87,7 +91,7 @@
         <p>Seguro que desea eliminar este evento?</p>
         </div>
         <div class="modal-footer">
-          <a href="#" id="btnYD" class="btn danger">Yes</a>
+          <a href="#" id="btnYD" data-dismiss="modal" aria-hidden="true" class="btn danger">Yes</a>
           <a href="#" data-dismiss="modal" aria-hidden="true" class="btn secondary">No</a>
         </div>
       </div>
@@ -103,7 +107,7 @@
         <p>Seguro que desea publicar este evento?</p>
         </div>
         <div class="modal-footer">
-          <a href="#" id="btnYP" class="btn danger">Yes</a>
+          <a href="#" id="btnYP" data-dismiss="modal" aria-hidden="true" class="btn danger">Yes</a>
           <a href="#" data-dismiss="modal" aria-hidden="true" class="btn secondary">No</a>
         </div>
       </div>
