@@ -4,13 +4,15 @@
     <meta charset="utf-8">
     <title>Compra de entradas</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="../js/compra.js"></script>
-    <link rel="stylesheet" href="../css/ticket.css">
+    <script src="{{asset('js/compra.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('css/ticket.css')}}">
   </head>
   <body onload="sumarPrecio">
     <div class="todo">
       <p>COMPRAR ENTRADAS</p>
+
         <form id="todo">
+
           <table id="repetir" class="table" style="width: 80%; background: white; opacity: 0.9;">
             <tr>
               <th class="form-group" scope="col">ENTRADAS</th>
@@ -32,28 +34,17 @@
               <td id="preciotexto" class="form-group" style="font-size: 15px; text-align: center;">{{event.price}}€</td>
             </tr>
             <tr>
+                {{ form_start(form)}}
               <td class="form-group"><b>¿Niño o adulto?</b></td>
               <td class="form-group">
-                <select id="inputState" onchange="nuevoCampo()" class="form-control" name="edad">
-                  <option value="ninguno" selected disabled> </option>
-                  <option value="niño" id="niño">Niño</option>
-                  <option value="adulto" id="adulto">Adulto</option>
-                </select>
+                {{ form_widget(form.gender, {'id': 'inputState'}) }}
               </td>
               <td class="form-group"> </td>
             </tr>
               <tr id="formniño" style="visibility: collapse">
                 <td class="form-group" id="edad1"><b>Edad de los niños</b></td>
                 <td class="form-group" id="edad2">
-                  <select class="form-control" name="niño">
-                    <option value="ninguno" selected disabled></option>
-                    <option value="1-3">1-3</option>
-                    <option value="4-6">4-6</option>
-                    <option value="7-9">7-9</option>
-                    <option value="10-12">10-12</option>
-                    <option value="13-15">13-15</option>
-                    <option value="16-17">16-17</option>
-                  </select>
+                  {{ form_widget(form.childage, {'id': 'inputState'}) }}
                 </td>
                 <td class="form-group"> </td>
               </tr>
@@ -61,11 +52,7 @@
             <tr>
               <td class="form-group"><b>¿Alguno de los participantes tiene diversidad funcional o discapacidad?</b></td>
               <td class="form-group">
-                <select id="inputState" class="form-control" name="discapacidad">
-                  <option value="ninguno" selected disabled> </option>
-                  <option value="si">Si</option>
-                  <option value="no">No</option>
-                </select>
+                  {{ form_widget(form.disability, {'id': 'inputState'})}}
               </td>
               <td> </td>
             </tr>
@@ -77,9 +64,10 @@
               <td> </td>
             </tr>
             <tr>
-              <td class="form-group"><b>TOTAL</b> impuestos incluidos</td>
+              <td class="form-group"><b>TOTAL</b></td>
               <td class="form-group"> </td>
-              <td class="form-group"><b id="precio">{{event.price * 0.21 + event.price}}€</b></td>
+              <td class="form-group"><b id="precio">{{event.price}}€</b></td>
+
             </tr>
 
           </table>
@@ -89,9 +77,12 @@
         <br><br>
         <div id="divMultiInputs">
        </div>
-       <input type="hidden" class="form-control" value="{{ 'now'|date('d - m -Y') }}" id="inputCity">
+
+
        </form>
-       <input type="submit" name="enviar" value="Continuar" class="enviar">
+
+       {{ form_widget(form.enviar,{ 'attr': {'class': 'enviar'} }) }}
+       {{ form_end(form)}}
     </div>
   </body>
 </html>

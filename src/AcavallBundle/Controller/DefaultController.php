@@ -42,19 +42,36 @@ class DefaultController extends Controller
         return $this->render('default/event.html.twig',array('event'=>$event,'eventsCategory'=>$eventsCategory));
     }
 
-    public function buyAction(Request $request, $id)
+    public function buyAction(Request $request, $id, $iduser)
     {
-      $event = $this->getDoctrine()->getRepository(Event::class)->findOneById($id);
+      if ($iduser == "notUser") {
+        return $this->redirectToRoute('acavall_register');
+      } else {
+        $repository = $this->getDoctrine()->getRepository('AcavallBundle:Event');
+        $event = $repository->findOneById($id);
 
-      $ticket=$this->getDoctrine()->getRepository(Ticket::class)->find($id);
-      $form=$this->createForm(TicketType::class, $ticket);
-      $form->handleRequest($request);
-      if ($form->isSubmitted() && $form->isValid()) {
-       $em = $this->getDoctrine()->getManager();
-       $em->persist($ticket);
-       $em->flush();
-     }
-      return $this-> render('default/ticket.html.twig', array('event'=>$event));
+        $repositoryuser = $this->getDoctrine()->getRepository('AcavallBundle:User');
+        $user = $repositoryuser->findOneById($iduser);
+
+        $ticket=new Ticket();
+        $form=$this->createForm(TicketType::class, $ticket);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+          $ticket=$form->getData();
+          $todayDate = new \DateTime("now");
+          $ticket->setDate($todayDate);
+          $ticket->setPersonalDocument($user->getPersonalDocument());
+          $ticket->setTransactionData("asdafsdf");
+          $ticket->setUser($user);
+          $ticket->setEvent($event);
+          $em=$this->getDoctrine()->getManager();
+          $em->persist($ticket);
+          $em->flush();
+          return $this->redirectToRoute('acavall_ticket');
+       }
+        return $this-> render('default/ticket.html.twig', array('form'=>$form->createView(),"event"=>$event));
+      }
     }
 
     public function ticketAction()

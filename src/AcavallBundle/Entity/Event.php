@@ -455,4 +455,9 @@ class Event
     {
         return $this->publish;
     }
+
+    public function __toString()
+    {
+      return $this->name;
+    }
 }

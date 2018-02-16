@@ -71,3 +71,9 @@ th, td {
  #precio {
    font-size: 20px;
  }
+
+#inputState {
+  width: 100%;
+  padding: inherit;
+  border-color: lightgrey;
+}

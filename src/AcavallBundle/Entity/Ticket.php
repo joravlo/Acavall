@@ -38,6 +38,20 @@ class Ticket
     /**
      * @var string
      *
+     * @ORM\Column(name="childage", type="string", length=255)
+     */
+    private $childage;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="gender", type="string", length=255)
+     */
+    private $gender;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="TransactionData", type="string", length=255)
      */
     private $transactionData;
@@ -48,6 +62,13 @@ class Ticket
      * @ORM\Column(name="Price", type="decimal", precision=2, scale=0)
      */
     private $price;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="disability", type="boolean")
+     */
+    private $disability;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="tickets")
@@ -118,6 +139,79 @@ class Ticket
     public function getPersonalDocument()
     {
         return $this->personalDocument;
+    }
+
+    /**
+     * Set childage
+     *
+     * @param string $childage
+     *
+     * @return Ticket
+     */
+    public function setChildAge($childage)
+    {
+        $this->childage = $childage;
+
+        return $this;
+    }
+
+    /**
+     * Get childage
+     *
+     * @return string
+     */
+    public function getChildAge()
+    {
+        return $this->childage;
+    }
+
+    /**
+     * Set disability
+     *
+     * @param string $disability
+     *
+     * @return Ticket
+     */
+    public function setDisability($disability)
+    {
+        $this->disability = $disability;
+
+        return $this;
+    }
+
+    /**
+     * Get disability
+     *
+     * @return string
+     */
+    public function getDisability()
+    {
+        return $this->disability;
+    }
+
+
+    /**
+     * Set gender
+     *
+     * @param string $gender
+     *
+     * @return Ticket
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
     }
 
     /**
@@ -215,4 +309,5 @@ class Ticket
     {
         return $this->event;
     }
+    
 }
