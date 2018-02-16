@@ -31,7 +31,9 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <form class="form-inline">
-              <a class="s my-2 my-sm-0" href="{{path('acavall_gestor')}}" style="color:white; text-decoration:none; margin-right:10px;">Gestor</a>
+              {% if is_granted('ROLE_ADMIN') %}
+                <a class="s my-2 my-sm-0" href="{{path('acavall_gestor')}}" style="color:white; text-decoration:none; margin-right:10px;">Gestor</a>
+              {% endif %}
               <a class="s my-2 my-sm-0" href="{{path('acavall_register')}}" style="color:white; text-decoration:none; margin-right:10px;">Unete!</a>
             </form>
           </nav>
