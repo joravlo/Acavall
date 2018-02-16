@@ -4,11 +4,27 @@ function filterForDate(routeApi) {
                   type: 'GET',
                   url: 'http://localhost:8000/api/' + routeApi,
                   success: function(data) {
-                    console.log(data);
                      document.getElementById("cardListContainer").innerHTML = "";
                      if(data.code != 400) {
                        $.each(data, function(i) {
-                         createCard(data[i].eventId,data[i].image,convertTimestamp(data[i].date.timestamp),data[i].name,data[i].address,data[i].price)
+                         createCard(data[i].id,data[i].image,convertTimestamp(data[i].date.timestamp),data[i].name,data[i].address,data[i].price)
+                        });
+                     }
+                  }
+                })
+              });
+}
+
+function filterForCategory(categoryId) {
+  $(function(){
+                $.ajax({
+                  type: 'GET',
+                  url: 'http://localhost:8000/api/getEventsWithCategory/' + categoryId,
+                  success: function(data) {
+                     document.getElementById("cardListContainer").innerHTML = "";
+                     if(data.code != 400) {
+                       $.each(data, function(i) {
+                         createCard(data[i].id,data[i].image,convertTimestamp(data[i].date.timestamp),data[i].name,data[i].address,data[i].price)
                         });
                      }
                   }
@@ -93,11 +109,11 @@ function createCard(eventId, eventImg, dateEvent, nameEvent, addressEvent, price
    var colmd5 = document.createElement("div");
    colmd5.className += 'col-md-5 text-center';
    colmd5.style.paddingTop = "8px";
-   colmd5.innerHTML = '<a style="color:#c8c22f; text-decoration:none;" href="/event/'+eventId+'"> VER MAS </a>'//Poner link
+   colmd5.innerHTML = '<a style="color:#c8c22f; text-decoration:none;" href="/event/'+ eventId +'"> VER MAS </a>';
    row2ConCard.appendChild(colmd5);
    var colmd7 = document.createElement("div");
    colmd7.className += 'col-md-7 text-center';
-   colmd7.innerHTML = '<a href="/buy" class="btn btnC" width="100px">COMPRAR</a>'//Poner link
+   colmd7.innerHTML = '<a href="/buy" class="btn btnC" width="100px">COMPRAR</a>';
    row2ConCard.appendChild(colmd7);
    contCard.appendChild(row2ConCard);
    cardBlock.appendChild(contCard);

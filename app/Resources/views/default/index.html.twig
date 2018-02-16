@@ -31,7 +31,7 @@
               Mañana
             </label><br>
             <label class="form-check-label">
-              <input type="radio" onclick="filterForDate('getEventsTomorrow');" id="thisWeek" class="form-check-input" name="input" value="esta semana">
+              <input type="radio" onclick="filterForDate('getEventsThisWeek');" id="thisWeek" class="form-check-input" name="input" value="esta semana">
               Esta semana
             </label><br>
             <label class="form-check-label">
@@ -49,15 +49,15 @@
         <fieldset class="form-group">
           <div class="form-check tit">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="input" value="niños y niñas">
+              <input type="radio" onclick="filterForCategory('1');" class="form-check-input" name="input" value="niños y niñas">
               Niños y niñas
             </label><br>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="input" value="adultos">
+              <input type="radio" onclick="filterForCategory('2');" class="form-check-input" name="input" value="adultos">
               Adultos
             </label><br>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="input" value="familia">
+              <input type="radio" onclick="filterForCategory('3');" class="form-check-input" name="input" value="familia">
               Familia <br>
             </label>
           </div>
@@ -67,23 +67,23 @@
         <fieldset class="form-group tit">
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="input" value="todos los animales">
+              <input type="radio" onclick="filterForCategory('4');" class="form-check-input" name="input" value="todos los animales">
               Todos los animales
             </label><br>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="input" value="gatos">
+              <input type="radio" onclick="filterForCategory('5');" class="form-check-input" name="input" value="gatos">
               Gatos
             </label><br>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="input" value="perros">
+              <input type="radio" onclick="filterForCategory('6');" class="form-check-input" name="input" value="perros">
               Perros
             </label><br>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="input" value="pequeños animales">
+              <input type="radio" onclick="filterForCategory('7');" class="form-check-input" name="input" value="pequeños animales">
               Pequeños animales
             </label><br>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="input" value="animales silvestres">
+              <input type="radio" onclick="filterForCategory('8');" class="form-check-input" name="input" value="animales silvestres">
               Animales silvestres
             </label>
           </div>
@@ -93,11 +93,11 @@
         <fieldset class="form-group tit">
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="input" value="inclusivas">
+              <input type="radio" onclick="filterForCategory('9');" class="form-check-input" name="input" value="inclusivas">
               Inclusivas <br>
             </label>
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="input" value="accesibles para silla de ruedas">
+              <input type="radio" onclick="filterForCategory('10');" class="form-check-input" name="input" value="accesibles para silla de ruedas">
               Accesibles para silla de ruedas <br>
             </label>
           </div>
@@ -134,7 +134,7 @@
                 <div class="row">
                   <div class="col-md-5 text-center" style="padding-top:8px;">
                     <a style="color:#c8c22f; text-decoration:none;"
-                       href="">
+                       href="{{ path('acavall_event',{ 'eventId': evento.id }) }}">
                        VER MAS
                     </a>
                   </div>
