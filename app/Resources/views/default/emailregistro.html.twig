@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style media="screen">
+      body {
+        background-color: lightgrey;
+      }
+      .content {
+        background-color: white;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        border-radius: 25px 25px 25px 25px;
+        -moz-border-radius: 25px 25px 25px 25px;
+        -webkit-border-radius: 25px 25px 25px 25px;
+        border: 0px solid #000000;
+      }
+      .logo {
+        width: 17%;
+        height: 10%;
+      }
+
+      a:link {
+        color: black;
+      }
+
+      a:visited {
+        color: black;
+      }
+
+      a:hover {
+        color: black;
+        text-decoration: none;
+      }
+
+      h1, h3 {
+        font-weight:normal;
+        color: grey;
+      }
+
+      p {
+        color: grey;
+      }
+
+      .boton {
+        background-color: #c8c22f;
+        border:none;
+        padding: 15px 70px;
+        font-weight:bold;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+      }
+
+    </style>
+  </head>
+  <body>
+    <br><br>
+    <div class="content">
+      <br>
+      <img src="{{ absolute_url(asset('img/acavall.jpg')) }}" alt="Logo" class="logo">
+      <h1>Confirma tu correo electronico</h1>
+      <h3>Hola {{usuario.name}} , gracias por registrarte</h3>
+      <p>Te esperamos para los diferentes eventos que tenemos preparados</p>
+      <p>Para poder empezar a apuntarte a los eventos haz click en el siguiente boton</p>
+      <br>
+      <button class="boton" type="button" class="btn btn-primary"><a href="http://localhost:8000/verifyCode/{{usuario.verifyCode}}">Confirmar mi cuenta</a></button>
+
+      <br><br>
+    </div>
+  </body>
+</html>

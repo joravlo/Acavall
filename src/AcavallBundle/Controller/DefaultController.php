@@ -22,10 +22,17 @@ class DefaultController extends Controller
         return $this->render('default/password.html.twig');
     }
 
-    public function gestorAction()
+    public function gestorAction(Request $request)
     {
-        $repository = $this->getDoctrine()->getRepository('AcavallBundle:Event');
-        $evento = $repository->findAll();
+        /*$repository = $this->getDoctrine()->getRepository('AcavallBundle:Event');
+        $evento = $repository->findAll();*/
+
+        $em = $this->getDoctrine()->getManager();
+
+        $listeEvents = $em->getRepository('AcavallBundle:Event')->findAll();
+        $evento = $this->get('knp_paginator')->paginate(
+          $listeEvents,
+          $request->query->get('page', 1), 10);
 
         return $this->render('default/gestorEvent.html.twig',array("eventos"=>$evento));
     }
@@ -50,4 +57,49 @@ class DefaultController extends Controller
         return $this->render('default/entrada.html.twig');
     }
 
+    public function emailRegisterAction($id, $name)
+    {
+
+      $repository = $this->getDoctrine()->getRepository('AcavallBundle:User');
+      $usuarios = $repository->findOneById($id);
+
+
+
+      $message = (new \Swift_Message('Email de Registro'))
+
+          ->setFrom('pruebaacavall@gmail.com')
+          ->setTo('joravlo@gmail.com')
+          ->setBody(
+              $this->renderView(
+                  'default/emailregistro.html.twig',
+                  array('name' => $name,
+                        "usuario"=>$usuarios)
+              ),
+              'text/html'
+          )
+      ;
+      $this->get('mailer')->send($message);
+
+      return $this->render('default/emailregistro.html.twig',array("usuario"=>$usuarios));
+    }
+
+    public function emailTicketAction($name)
+    {
+    $message = (new \Swift_Message('Email de Registro'))
+
+        ->setFrom('pruebaacavall@gmail.com')
+        ->setTo('joravlo@gmail.com')
+        ->setBody(
+            $this->renderView(
+                'default/emailTicket.html.twig',
+                array('name' => $name)
+            ),
+            'text/html'
+        )
+
+    ;
+    $this->get('mailer')->send($message);
+
+    return $this->render('default/email.html.twig');
+    }
 }
