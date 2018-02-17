@@ -111,6 +111,7 @@
 
           <div class="card cardFormat">
 
+
             <div class="contImg">
               <img class="card-img-top" width="100px" height="130px" onerror="this.src='{{asset('img/acavall.jpg')}}';" src="{{asset('img/imagesEvents/' ~ evento.image)}}" alt="Imagen card evento">
             </div>
@@ -139,7 +140,12 @@
                     </a>
                   </div>
                   <div class="col-md-7 text-center">
-                    <a href="buy" class="btn btnC" width="100px">COMPRAR</a>
+                    {% if evento.actualCapacity == 0 %}
+                      <a href="buy" class="btn btnC" width="100px" style="pointer-events: none;">AGOTADO</a>
+                    {% else %}
+                      <a href="buy" class="btn btnC" width="100px">COMPRAR</a>
+                    {% endif %}
+
                   </div>
                 </div>
 

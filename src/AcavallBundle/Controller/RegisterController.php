@@ -78,11 +78,11 @@ class RegisterController extends Controller
   public function urlcodeAction($ramCode)
   {
 
-    $repository = $this->getDoctrine()->getRepository('AcavallBundle:User');
+    $repository = $this->getDoctrine()->getRepository(User::Class);
     $userInput = $repository->findOneByVerifyCode($ramCode);
 
     if (empty($userInput)) {
-      return $this->redirectToRoute('acavall_code',array("boolCode"=>false));
+      return $this->redirectToRoute('acavall_register',array("boolCode"=>false));
     }else{
 
       $userInput->setVerifyPassword(true);
@@ -90,7 +90,7 @@ class RegisterController extends Controller
       $em->persist($userInput);
       $em->flush();
 
-      return $this->redirectToRoute('acavall_code',array("boolCode"=>true));
+      return $this->redirectToRoute('acavall_register',array("boolCode"=>true));
     }
   }
 

@@ -90,7 +90,7 @@ class ApiController extends Controller
   public function getAllEventsAction()
   {
     $em = $this->getDoctrine()->getManager();
-    $events = $em->getRepository(Event::Class)->findAll();
+    $events = $em->getRepository(Event::Class)->getAllEvents();
     $encoders = array(new JsonEncoder());
     $normalizer = new ObjectNormalizer();
     $normalizer->setCircularReferenceHandler(function ($object) {

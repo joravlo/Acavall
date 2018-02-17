@@ -12,7 +12,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $repository = $this->getDoctrine()->getRepository('AcavallBundle:Event');
-        $evento = $repository->findAll();
+        $evento = $repository->getAllEvents();
 
         return $this->render('default/index.html.twig',array("eventos"=>$evento));
     }

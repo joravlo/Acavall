@@ -5,6 +5,7 @@ namespace AcavallBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\File;
 
 use AcavallBundle\Entity\Event;
 use AcavallBundle\Form\EventType;
@@ -46,7 +47,8 @@ class EventController extends Controller
     $em = $this->getDoctrine()->getManager();
     $event = $em->getRepository(Event::Class)->find($eventId);
     $urlFoto = $event->getImage();
-    $event->setImage(null);
+    $file = new File($this->getParameter('image_event_directory')."/".$urlFoto);
+    $event->setImage($file);
     $form = $this->createForm(EventType::class, $event);
 
     $form->handleRequest($request);
@@ -61,11 +63,11 @@ class EventController extends Controller
           $imageFile = $event->getImage();
 
           //Generated a unique name for the image
-          $imageFileName = md5(uniqid()).'.'.$imageFile->guessExtension();
+          //$imageFileName = md5(uniqid()).'.'.$imageFile->guessExtension();
           // Move the file to the directory where brochures are stored
           $imageFile->move(
              $this->getParameter('image_event_directory'),
-             $imageFileName
+             $urlFoto
          );
 
           $event->setImage($imageFileName);
@@ -75,7 +77,7 @@ class EventController extends Controller
         $em->flush();
         return $this->redirectToRoute('acavall_manage');
       }
-      return $this->render('default/updateEvent.html.twig',array('form'=>$form->createView(),"event"=>$event,"urlFoto"=>$urlFoto));
+      return $this->render('default/updateEvent.html.twig',array('form'=>$form->createView(),"event"=>$event,"urlFoto"=>$file));
   }
 
   public function deleteEventAction($eventId)

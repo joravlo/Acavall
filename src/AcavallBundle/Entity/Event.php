@@ -69,6 +69,13 @@ class Event
     private $capacity;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="actualcapacity", type="integer")
+     */
+    private $actualCapacity;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
@@ -454,5 +461,29 @@ class Event
     public function getPublish()
     {
         return $this->publish;
+    }
+
+    /**
+     * Set actualCapacity
+     *
+     * @param integer $actualCapacity
+     *
+     * @return Event
+     */
+    public function setActualCapacity($actualCapacity)
+    {
+        $this->actualCapacity = $actualCapacity;
+
+        return $this;
+    }
+
+    /**
+     * Get actualCapacity
+     *
+     * @return integer
+     */
+    public function getActualCapacity()
+    {
+        return $this->actualCapacity;
     }
 }
