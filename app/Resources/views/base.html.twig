@@ -25,13 +25,13 @@
 
           <nav class="navbar navbar-expand-sm justify-content-between" style="background:#c8c22f;">
             <a class="navbar-brand" href="{{path('acavall_homepage')}}">
-              <img src="img/logoNav.png" alt="logotipo aCavall" style="width:110px;">
+              <img src="{{asset('img/logoNav.png')}}" alt="logotipo aCavall" style="width:110px;">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
               <span class="navbar-toggler-icon"></span>
             </button>
             <form class="form-inline">
-              
+
               {% if is_granted('ROLE_ADMIN') %}
                 <a class="s my-2 my-sm-0" href="{{path('acavall_gestor')}}" style="color:white; text-decoration:none; margin-right:15px;">Gestor</a>
               {% endif %}
