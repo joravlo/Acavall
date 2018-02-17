@@ -244,7 +244,8 @@ class ApiController extends Controller
       $jsonContent = $serializer->serialize(array('code' => 400,'message' => "No existe el evento"), 'json');
       $response = JsonResponse::fromJsonString($jsonContent);
     } else {
-      $event->setPublish(true);
+      $publ = $event->getPublish();
+      if($publ == false){$event->setPublish(true);}else{$event->setPublish(false);}
       $em->persist($event);
       $em->flush();
       $jsonContent = $serializer->serialize(array('code' => 200,'message' => "Publicado con exito"), 'json');

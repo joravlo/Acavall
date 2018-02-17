@@ -18,9 +18,46 @@
   </head>
   <body onload="showMap('{{event.address}}');">
 
-    <div class="container-fluid containerBackground">
+    <div class="container-fluid" style="margin-top:0px; padding:0px; z-index:3; position:fixed;">
+
+      <nav class="navbar navbar-expand-sm justify-content-between" style="background:#c8c22f;">
+        <a class="navbar-brand" href="{{path('acavall_homepage')}}">
+          <img src="{{asset('img/logoNav.png')}}" alt="logotipo aCavall" style="width:110px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <form class="form-inline">
+          {% if is_granted('ROLE_ADMIN') %}
+            <a class="s my-2 my-sm-0" href="{{path('acavall_gestor')}}" style="color:white; text-decoration:none; margin-right:10px;">Gestor</a>
+          {% endif %}
+          <a class="s my-2 my-sm-0" href="{{path('acavall_register')}}" style="color:white; text-decoration:none; margin-right:10px;">Unete!</a>
+        </form>
+      </nav>
 
     </div>
+
+    <div class="container-fluid containerBackground">
+
+      <div class="container-fluid" style="margin-top:0px; margin-bottom:20px; padding:0px; z-index:3;">
+        <nav class="navbar navbar-expand-sm justify-content-between" style="background:#c8c22f;">
+          <a class="navbar-brand" href="{{path('acavall_homepage')}}">
+            <img src="img/logoNav.png" alt="logotipo aCavall" style="width:110px;">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <form class="form-inline">
+            {% if is_granted('ROLE_ADMIN') %}
+              <a class="s my-2 my-sm-0" href="{{path('acavall_gestor')}}" style="color:white; text-decoration:none; margin-right:10px;">Gestor</a>
+            {% endif %}
+            <a class="s my-2 my-sm-0" href="{{path('acavall_register')}}" style="color:white; text-decoration:none; margin-right:10px;">Unete!</a>
+          </form>
+        </nav>
+      </div>
+
+    </div>
+
     <div class="containerInfo">
       <div class="container">
         <div class="row">
@@ -63,10 +100,10 @@
           </div>
 
           <div class="col-md-4">
-              <div class="card">
+              <div class="card" style="background: white;">
                 <div class="containerCardInfo row">
                     <div class="col-md-2">
-                      <i class="fas fa-map-marker-alt"></i>
+                      <i class="fas fa-map-marker-alt" style="font-size:24px; color: #828B91;"></i>
                     </div>
                     <div class="col-md-10">
                       <div class="cardInfoRow">
@@ -95,8 +132,79 @@
       </div>
 
       <div class="container">
-        <h2 class="textOtherEvents">Otros eventos que podrían interesarte</h2>
+
+      {% if eventsCategory is defined %}
+
+        <div>
+          <h3 class="textOtherEvents"> Otros eventos que podrían interesarte</h3>
+        </div><br>
+
+        {% for eventCategory in eventsCategory %}
+          <div class="card cardFormat">
+
+            <div class="contImg">
+              <img class="card-img-top" width="100px" height="130px" onerror="this.src='{{asset('img/acavall.jpg')}}';" src="{{asset('img/imagesEvents/' ~ eventCategory.image)}}" alt="Imagen card evento">
+            </div>
+
+            <div class="card-block">
+              <p id="eveName"><b>{{ eventCategory.name }}</b></p>
+
+              <div id="contCard" class="container">
+
+                <div class="row" style="margin-bottom:5px">
+                  <div class="col-md-4 text-center">
+                    <div id="month">{{ eventCategory.date|date('M') }}</div>
+                    <div id="day">  {{ eventCategory.date|date('d') }}</div>
+                  </div>
+                  <div class="col-md-8" style="font-size:14px;">
+                    <p style="margin-bottom:0px;"><i style="color:grey;" class="far fa-money-bill-alt"></i> &nbsp; desde <b>{{ eventCategory.price }} €</b></p>
+                    <p><i style="color:grey;" class="fas fa-map-marker"></i> &nbsp;{{ eventCategory.address }}</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-5 text-center" style="padding-top:8px;">
+                    <a style="color:#c8c22f; text-decoration:none;"
+                       href="{{ path('acavall_event',{ 'eventId': eventCategory.id }) }}">
+                       VER MAS
+                    </a>
+                  </div>
+                  <div class="col-md-7 text-center">
+                    <a href="buy" class="btn btnC" width="100px">COMPRAR</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
       </div>
+
+      <footer class="container-fluid text-center" style="margin-top:20px; background:grey; padding:20px;">
+        <div class="row" style="color:white">
+          <div class="col-md-4 offset-md-2">
+            <h4>Contacto</h4>
+            <p>
+              tlf. 692 03 89 30 <br>
+              info@fundacionacavall.com
+            </p>
+          </div>
+          <div class="col-md-4">
+            <h4>Redes Sociales</h4>
+            <a class="btn btn-social-icon btn-twitter">
+              <span class="fa fa-twitter"></span>
+            </a>
+            <a class="btn btn-social-icon btn-facebook">
+              <span class="fa fa-facebook"></span>
+            </a>
+            <a class="btn btn-social-icon btn-instagram">
+              <span class="fa fa-instagram"></span>
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
+
   </body>
 </html>

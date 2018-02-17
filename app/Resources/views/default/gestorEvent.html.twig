@@ -58,7 +58,11 @@
                 <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
               </a>
               <a id="{{ evento.id }}" href="#modalPost" data-toggle="modal">
-                <button type="button" class="btn btn-success btn-sm">Publicar</button>
+                {% if evento.publish == false %}
+                  <button id="btnP{{ evento.id }}" type="button" class="btn btn-success btn-sm">Publicar</button>
+                {% else %}
+                  <button id="btnP{{ evento.id }}" type="button" class="btn btn-success btn-sm">Quitar</button>
+                {% endif %}
               </a>
             </div>
           </div>
@@ -71,14 +75,6 @@
     <div class="navigation">
       {{ knp_pagination_render(eventos) }}
     </div>
-
-    <!--<div class="pagination">
-      <a href="#">&laquo;</a>
-      <a href="#" class="active">1</a>
-      <a href="#">2</a>
-      <a href="#">3</a>
-      <a href="#">&raquo;</a>
-    </div>-->
 
   </div>
 
@@ -122,7 +118,7 @@
             type: 'DELETE',
             url: 'http://localhost:8000/api/deleteEvent/' + eveId,
             success: function(data) {
-               $('#modalDelete').modal('toggle');
+              deleteLine(eveId);
             }
           })
       });
@@ -134,10 +130,16 @@
             type: 'PUT',
             url: 'http://localhost:8000/api/publicarEvent/' + eveId,
             success: function(data) {
-
+              changeBtn(eveId);
             }
           })
       });
+    }
+
+    function changeBtn(id){
+        var bt = $("#btnP"+id).text();
+        if (bt == 'Publicar') { $("#btnP"+id).text('Quitar');
+        } else if (bt == 'Quitar') {$("#btnP"+id).text('Publicar');}
     }
 
     function filtrar() {
@@ -156,11 +158,22 @@
         }
     }
 
+    function deleteLine(eveId)
+    {
+      ul = document.getElementById("mul");
+      li = ul.getElementsByTagName("li");
+      for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("div")[0];
+        if (a.innerHTML.indexOf(eveId) > -1) {
+          li[i].style.display = "none";
+        }
+      }
+    }
+
     $('#modalDelete').on('show.bs.modal', function (e) {
       var eveIdD = e.relatedTarget.id;
       $('#btnYD').click(function() {
         deleteEvent(eveIdD);
-        //$('#modalDelete').modal('toggle');
       });
     });
 
@@ -168,7 +181,6 @@
       var eveIdP = e.relatedTarget.id;
       $('#btnYP').click(function() {
         publicarEvent(eveIdP);
-        //$('#modalDelete').modal('toggle');
       });
     });
 
