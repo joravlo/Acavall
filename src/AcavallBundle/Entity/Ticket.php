@@ -22,9 +22,9 @@ class Ticket
     private $id;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="date", type="string", length=255)
      */
     private $date;
 
@@ -357,7 +357,7 @@ class Ticket
     public function setNumTicket($numTicket)
     {
         $this->numTicket = $numTicket;
-    
+
         return $this;
     }
 

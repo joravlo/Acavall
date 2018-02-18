@@ -11,6 +11,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\HttpFoundation\Request;
 use AcavallBundle\Entity\Event;
 use AcavallBundle\Entity\Category;
+use AcavallBundle\Entity\Ticket;
 
 class ApiController extends Controller
 {
@@ -70,7 +71,7 @@ class ApiController extends Controller
     $encoders = array(new JsonEncoder());
     $normalizer = new ObjectNormalizer();
     $normalizer->setCircularReferenceHandler(function ($object) {
-    return $object->getName();
+    return $object->getId();
 });
     $normalizer->setIgnoredAttributes(array('tags', 'laundry'));
     $normalizers = array($normalizer);
@@ -94,8 +95,8 @@ class ApiController extends Controller
     $encoders = array(new JsonEncoder());
     $normalizer = new ObjectNormalizer();
     $normalizer->setCircularReferenceHandler(function ($object) {
-    return $object->getName();
-});
+      return $object->getId();
+  });
     $normalizer->setIgnoredAttributes(array('tags', 'laundry'));
     $normalizers = array($normalizer);
     $serializer = new Serializer($normalizers, $encoders);
@@ -118,7 +119,7 @@ class ApiController extends Controller
     $encoders = array(new JsonEncoder());
     $normalizer = new ObjectNormalizer();
     $normalizer->setCircularReferenceHandler(function ($object) {
-    return $object->getName();
+    return $object->getId();
 });
     $normalizer->setIgnoredAttributes(array('tags', 'laundry'));
     $normalizers = array($normalizer);
@@ -142,7 +143,7 @@ class ApiController extends Controller
     $encoders = array(new JsonEncoder());
     $normalizer = new ObjectNormalizer();
     $normalizer->setCircularReferenceHandler(function ($object) {
-    return $object->getName();
+    return $object->getId();
 });
     $normalizer->setIgnoredAttributes(array('tags', 'laundry'));
     $normalizers = array($normalizer);
@@ -166,7 +167,7 @@ class ApiController extends Controller
     $encoders = array(new JsonEncoder());
     $normalizer = new ObjectNormalizer();
     $normalizer->setCircularReferenceHandler(function ($object) {
-    return $object->getName();
+    return $object->getId();
 });
     $normalizer->setIgnoredAttributes(array('tags', 'laundry'));
     $normalizers = array($normalizer);
@@ -190,7 +191,7 @@ class ApiController extends Controller
     $encoders = array(new JsonEncoder());
     $normalizer = new ObjectNormalizer();
     $normalizer->setCircularReferenceHandler(function ($object) {
-    return $object->getName();
+    return $object->getId();
 });
     $normalizer->setIgnoredAttributes(array('tags', 'laundry'));
     $normalizers = array($normalizer);
@@ -214,7 +215,7 @@ class ApiController extends Controller
     $encoders = array(new JsonEncoder());
     $normalizer = new ObjectNormalizer();
     $normalizer->setCircularReferenceHandler(function ($object) {
-    return $object->getName();
+    return $object->getId();
 });
     $normalizer->setIgnoredAttributes(array('tags', 'laundry'));
     $normalizers = array($normalizer);
