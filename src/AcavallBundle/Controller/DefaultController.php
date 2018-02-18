@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 use AcavallBundle\Entity\Event;
+use AcavallBundle\Entity\Ticket;
+use AcavallBundle\Form\TicketType;
 
 class DefaultController extends Controller
 {
@@ -50,14 +52,71 @@ class DefaultController extends Controller
       }
     }
 
-    public function buyAction()
+    public function buyAction(Request $request, $id, $iduser)
     {
-        return $this->render('default/ticket.html.twig');
+
+        if ($iduser == "notUser") {
+          return $this->redirectToRoute('acavall_register');
+        } else {
+          $repository = $this->getDoctrine()->getRepository('AcavallBundle:Event');
+          $event = $repository->findOneById($id);
+          $repositoryuser = $this->getDoctrine()->getRepository('AcavallBundle:User');
+          $user = $repositoryuser->findOneById($iduser);
+
+          $ticket = new Ticket();
+          $form=$this->createForm(TicketType::class, $ticket);
+          $form->handleRequest($request);
+
+          if ($form->isSubmitted() && $form->isValid()) {
+            $ticket=$form->getData();
+            $todayDate = new \DateTime("now");
+            if ($ticket->getGender() == "adulto") {
+              $ticket->setChildage(null);
+            }
+            $ticket->setDate($todayDate);
+            $ticket->setPrice($event->getPrice());
+            $ticket->setPersonalDocument($user->getPersonalDocument());
+            $ticket->setTransactionData("asdafsdf");
+            $ticket->setUser($user);
+            $ticket->setEvent($event);
+            $ticket->setNumTicket($event->getActualCapacity());
+            $event->setActualCapacity($event->getActualCapacity()-1);
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($ticket);
+            $em->persist($event);
+            $em->flush();
+            $message = (new \Swift_Message('Entrada '.$event->getName()))
+
+                ->setFrom('pruebaacavall@gmail.com')
+                ->setTo($user->getEmail())
+                ->setBody(
+                    $this->renderView(
+                        'default/emailEntrada.html.twig',
+                        array('event' => $event,
+                              "user"=>$user,
+                              'ticket'=>$ticket)
+                    ),
+                    'text/html'
+                )
+            ;
+            $this->get('mailer')->send($message);
+            return $this->redirect($this->generateUrl('acavall_ticket', array('eventId'=>$event->getId(),'userId'=>$user->getId(),'ticketId'=>$ticket->getId())));
+         }
+
+          return $this-> render('default/ticket.html.twig', array('form'=>$form->createView(),"event"=>$event));
+        }
     }
 
-    public function ticketAction()
+    public function ticketAction($eventId,$userId,$ticketId)
     {
-        return $this->render('default/entrada.html.twig');
+      $repository = $this->getDoctrine()->getRepository('AcavallBundle:Event');
+      $event = $repository->findOneById($eventId);
+      $repositoryuser = $this->getDoctrine()->getRepository('AcavallBundle:User');
+      $user = $repositoryuser->findOneById($userId);
+      $repositoryTicket = $this->getDoctrine()->getRepository('AcavallBundle:Ticket');
+      $ticket = $repositoryTicket->findOneById($ticketId);
+
+        return $this->render('default/entrada.html.twig',array("event"=>$event,"user"=>$user,"ticket"=>$ticket));
     }
 
     public function emailRegisterAction($id, $name)

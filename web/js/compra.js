@@ -14,10 +14,10 @@ function multiplicarInputs(text){
 }
 
 function nuevoCampo() {
-    var select = document.getElementById("inputState").value;
+    var select = document.getElementById("gender").value;
     if (select=="niño") {
-      document.getElementById("formniño").style.visibility = "visible";
+      $('#formchildage').fadeIn("slow");
     }else if (select=="adulto") {
-      document.getElementById("formniño").style.visibility = "collapse";
+      $('#formchildage').fadeOut("slow");
     }
 }

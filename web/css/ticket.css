@@ -54,3 +54,55 @@ th, td {
  #precio {
    font-size: 20px;
  }
+
+ .containerTicket {
+   margin-top: 100px;
+   margin-bottom: 200px;
+ }
+
+ .form-row {
+   padding: 10px;
+ }
+
+ .formHeader {
+   padding: 0px;
+ }
+
+ .form {
+   padding-right: 0; padding-left: 0;
+ }
+
+ .deletePadding {
+   margin-right: 0px;
+   margin-left: 0px;
+   background-color: #f8f8f8;
+ }
+
+.deletePadding p {
+  height: 100%;
+  padding-top: 5px;
+}
+
+#buyTicket {
+  background-color: #c8c22f;
+  width: 100%;
+  color: white;
+}
+
+#buyTicket:hover {
+  opacity: 0.6;
+  color: white;
+}
+
+label {
+  font-weight: bold;
+}
+
+.totalTitle {
+  font-weight: bold;
+}
+
+.totalPrice {
+  font-size: 20px;
+  font-weight: bold;
+}

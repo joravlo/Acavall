@@ -36,6 +36,41 @@ class Ticket
     private $personalDocument;
 
     /**
+      * @var string
+      *
+      * @ORM\Column(name="childage", type="string", length=255, nullable=true)
+      */
+    private $childage;
+
+    /**
+      * @var string
+      *
+      * @ORM\Column(name="gender", type="string", length=255)
+      */
+    private $gender;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="numTicket", type="integer")
+     */
+    private $numTicket;
+
+  /**
+    * @var boolean
+    *
+    * @ORM\Column(name="disability", type="boolean")
+    */
+   private $disability;
+
+   /**
+     * @var boolean
+     *
+     * @ORM\Column(name="support", type="boolean")
+     */
+    private $support;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="TransactionData", type="string", length=255)
@@ -214,5 +249,125 @@ class Ticket
     public function getEvent()
     {
         return $this->event;
+    }
+
+    /**
+     * Set childage
+     *
+     * @param string $childage
+     *
+     * @return Ticket
+     */
+    public function setChildage($childage)
+    {
+        $this->childage = $childage;
+
+        return $this;
+    }
+
+    /**
+     * Get childage
+     *
+     * @return string
+     */
+    public function getChildage()
+    {
+        return $this->childage;
+    }
+
+    /**
+     * Set gender
+     *
+     * @param string $gender
+     *
+     * @return Ticket
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * Set disability
+     *
+     * @param boolean $disability
+     *
+     * @return Ticket
+     */
+    public function setDisability($disability)
+    {
+        $this->disability = $disability;
+
+        return $this;
+    }
+
+    /**
+     * Get disability
+     *
+     * @return boolean
+     */
+    public function getDisability()
+    {
+        return $this->disability;
+    }
+
+    /**
+     * Set support
+     *
+     * @param boolean $support
+     *
+     * @return Ticket
+     */
+    public function setSupport($support)
+    {
+        $this->support = $support;
+
+        return $this;
+    }
+
+    /**
+     * Get support
+     *
+     * @return boolean
+     */
+    public function getSupport()
+    {
+        return $this->support;
+    }
+
+    /**
+     * Set numTicket
+     *
+     * @param integer $numTicket
+     *
+     * @return Ticket
+     */
+    public function setNumTicket($numTicket)
+    {
+        $this->numTicket = $numTicket;
+    
+        return $this;
+    }
+
+    /**
+     * Get numTicket
+     *
+     * @return integer
+     */
+    public function getNumTicket()
+    {
+        return $this->numTicket;
     }
 }

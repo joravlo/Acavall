@@ -141,9 +141,13 @@
                   </div>
                   <div class="col-md-7 text-center">
                     {% if evento.actualCapacity == 0 %}
-                      <a href="buy" class="btn btnC" width="100px" style="pointer-events: none;">AGOTADO</a>
+                    <a href="" class="btn btnC" width="100px"  style="pointer-events: none;">AGOTADO</a>
                     {% else %}
-                      <a href="buy" class="btn btnC" width="100px">COMPRAR</a>
+                    {% set idUser = 'notUser' %}
+                      {% if app.user %}
+                      {% set idUser = app.user.id %}
+                      {% endif %}
+                      <a href="{{path('acavall_buy',{ 'id': evento.id, 'iduser': idUser })}}" class="btn btnC" width="100px">COMPRAR</a>
                     {% endif %}
 
                   </div>

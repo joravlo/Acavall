@@ -59,57 +59,34 @@
       <p> A continuacion tienes la entrada para el evento.Tambien se le a enviado un correo con la entrada</p>
       <button id="cmd" type="button" class="btn btn-primary" style="background-color: #c8c22f; border:none; padding: 15px 70px; font-weight:bold;">Guarda tu entrada</button>
     </div>
-    <div class="contenido-vista">
+    <div id="ticket" class="contenido-vista">
     <table class="table table-sm">
         <tr>
-          <td colspan="2"><img src="{{asset ('img/fondo.jpg')}}" alt="Foto Entrada" height="150" width="300" style="float:left"><p style="margin-left: 80px; margin-top: 50px; font-size: 35px; font-weight:bold; float:left">Evento de Terapia con animales</p></td>
+          <td colspan="2"><img src="{{asset('img/imagesEvents/' ~ event.image)}}" alt="Foto Entrada" height="150" width="300" style="float:left"><p style="margin-left: 80px; margin-top: 50px; font-size: 35px; font-weight:bold; float:left">{{event.name}}</p></td>
         </tr>
       <tbody>
         <tr>
-          <td><h5 style="color:#6b6663;">Fecha + hora </h5><p style="text-align: center; font-size: 15px; font-weight:bold;">Domingo, 28 de agosto de 2016 desde las 19:00 hasta las 21:00</p></td>
-          <td><h5 style="color:#6b6663;">Ubicacion</h5><p style="text-align: center; font-size: 15px; font-weight:bold;">Valencia, c/Avenida del Cid, nº15</td>
+          <td><h5 style="color:#6b6663;">Fecha + hora </h5><p style="text-align: center; font-size: 15px; font-weight:bold;">{{event.date|date('Y-M-d')}}</p></td>
+          <td><h5 style="color:#6b6663;">Ubicacion</h5><p style="text-align: center; font-size: 15px; font-weight:bold;">{{event.address}}</td>
         </tr>
         <tr>
-          <td colspan="2"><h5 style="color:#6b6663;">Informacion del pedido</h5><p style="text-align: center; font-size: 15px; font-weight:bold;">Pedido nº537. Pedido por Pepe Guede el 18 de junio de 2016</p></td>
+          <td colspan="2"><h5 style="color:#6b6663;">Informacion del pedido</h5><p style="text-align: center; font-size: 15px; font-weight:bold;">Entrada nº{{ticket.numTicket}}. Pedido por {{user.name}} {{user.surname}}</p></td>
         </tr>
         <tr>
-          <td colspan="2"><h5 style="color:grey;">Tipo de entrada</h5><p style="text-align: right; font-size: 15px; font-weight:bold; ">Entrada normal 19'80€</p></td>
+          <td colspan="2"><h5 style="color:grey;">Tipo de entrada</h5><p style="text-align: right; font-size: 15px; font-weight:bold; ">Entrada normal {{event.price}}€</p></td>
         </tr>
       </tbody>
     </table>
         </div>
-
-        <div id="content" class="contenido">
-        <table class="table table-sm">
-            <tr>
-              <td colspan="2"><img src="{{asset ('img/fondo.jpg')}}" alt="Foto Entrada" height="100" width="150" style="float:left"><p style="margin-left: 70px; margin-top: 25px; font-size: 30px; font-weight:bold; float:left">Evento de Terapia con animales</p></td>
-            </tr>
-          <tbody>
-            <tr>
-              <td><h5 style="color:#6b6663;">Fecha + hora </h5><p style="text-align: center; font-size: 15px; font-weight:bold;">Domingo, 28 de agosto de 2016 desde las 19:00 hasta las 21:00</p></td>
-              <td><h5 style="color:#6b6663;">Ubicacion</h5><p style="text-align: center; font-size: 15px; font-weight:bold;">Valencia, c/Avenida del Cid, nº15</td>
-            </tr>
-            <tr>
-              <td colspan="2"><h5 style="color:#6b6663;">Informacion del pedido</h5><p style="text-align: center; font-size: 15px; font-weight:bold;">Pedido nº537. Pedido por Pepe Guede el 18 de junio de 2016</p></td>
-            </tr>
-            <tr>
-              <td colspan="2"><h5 style="color:grey;">Tipo de entrada</h5><p style="text-align: right; font-size: 15px; font-weight:bold; ">Entrada normal 19'80€</p></td>
-            </tr>
-          </tbody>
-        </table>
-            </div>
         <script type="text/javascript">
 
 
 
 $('#cmd').click(function() {
-  var div = document.getElementById("content").innerHTML;
-  var div = document.getElementById("content").style.visibility = "visible";
-  document.getElementById('id')
   var options = {
   };
   var pdf = new jsPDF('landscape', 'mm', [200, 200]);
-  pdf.addHTML($("#content"), 0, 0, options, function() {
+  pdf.addHTML($("#ticket"), 0, 0, options, function() {
     pdf.save('entradaAcavall.pdf');
   });
 });

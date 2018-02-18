@@ -1,96 +1,93 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Compra de entradas</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="../js/compra.js"></script>
-    <link rel="stylesheet" href="../css/ticket.css">
-  </head>
-  <body>
-    <div class="todo">
-      <p>COMPRAR ENTRADAS</p>
-        <form id="todo">
-          <table id="repetir" class="table" style="width: 80%; background: white; opacity: 0.9;">
-            <tr>
-              <th class="form-group" scope="col">ENTRADAS</th>
-              <th class="form-group" scope="col">CANTIDAD</th>
-              <th class="form-group" scope="col">PRECIO</th>
-            </tr>
-            <tr>
-              <td class="form-group"><b>Entrada General</b></td>
-              <td class="form-group">
-                <select id="numero" onchange="multiplicarInputs()" class="form-control" name="edad">
-                  <option value="ninguno" selected disabled> </option>
-                  <option value="1" id="1">1</option>
-                  <option value="2" id="2">2</option>
-                  <option value="3" id="3">3</option>
-                  <option value="4" id="4">4</option>
-                  <option value="5" id="5">5</option>
-                </select>
-              </td>
-              <td id="preciotexto" class="form-group" style="font-size: 15px; text-align: center;">18€</td>
-            </tr>
-            <tr>
-              <td class="form-group"><b>¿Niño o adulto?</b></td>
-              <td class="form-group">
-                <select id="inputState" onchange="nuevoCampo()" class="form-control" name="edad">
-                  <option value="ninguno" selected disabled> </option>
-                  <option value="niño" id="niño">Niño</option>
-                  <option value="adulto" id="adulto">Adulto</option>
-                </select>
-              </td>
-              <td class="form-group"> </td>
-            </tr>
-              <tr id="formniño" style="visibility: collapse">
-                <td class="form-group" id="edad1"><b>Edad de los niños</b></td>
-                <td class="form-group" id="edad2">
-                  <select class="form-control" name="niño">
-                    <option value="ninguno" selected disabled></option>
-                    <option value="1-3">1-3</option>
-                    <option value="4-6">4-6</option>
-                    <option value="7-9">7-9</option>
-                    <option value="10-12">10-12</option>
-                    <option value="13-15">13-15</option>
-                    <option value="16-17">16-17</option>
-                  </select>
-                </td>
-                <td class="form-group"> </td>
-              </tr>
+{% extends 'base.html.twig' %}
 
-            <tr>
-              <td class="form-group"><b>¿Alguno de los participantes tiene diversidad funcional o discapacidad?</b></td>
-              <td class="form-group">
-                <select id="inputState" class="form-control" name="discapacidad">
-                  <option value="ninguno" selected disabled> </option>
-                  <option value="si">Si</option>
-                  <option value="no">No</option>
-                </select>
-              </td>
-              <td> </td>
-            </tr>
-            <tr>
-              <td class="form-group"><b>¿Necesita algun tipo de adaptación o apoyo?</b></td>
-              <td class="form-group">
-                <input type="text" class="form-control" id="inputCity">
-              </td>
-              <td> </td>
-            </tr>
-            <tr>
-              <td class="form-group"><b>TOTAL</b> impuestos incluidos</td>
-              <td class="form-group"> </td>
-              <td class="form-group"><b id="precio">19,80€</b></td>
-            </tr>
-          </table>
-          <br><br>
+{% block title %}Comprar de entrada{% endblock %}
 
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{asset('css/ticket.css')}}">
+{% endblock %}
 
-        <br><br>
-        <div id="divMultiInputs">
-       </div>
+{% block javascripts %}
+  <script src="{{asset('js/compra.js')}}"></script>
+{% endblock %}
 
-       </form>
-       <input type="submit" name="enviar" value="Continuar" class="enviar">
+{% block body %}
+  <div class="container containerTicket">
+    <div class="form" style="background-color:white;">
+      <div class="row deletePadding">
+        <div class="col-md-6">
+          <p class="totalTitle">Compra de entradas</p>
+        </div>
+      </div>
+      <div class="form-row deletePadding">
+        <div class="col-6">
+          <p class="align-middle">ENTRADAS</p>
+        </div>
+        <div class="col-3">
+          <p>CANTIDAD</p>
+        </div>
+        <div class="col-3">
+          <p>PRECIO</p>
+        </div>
+      </div>
+      {{ form_start(form) }}
+      <div class="form-row">
+        <div class="col-6">
+          <label for="">Entrada general</label>
+        </div>
+        <div class="col-3">
+          <select class="form-control">
+            <option>1</option>
+          </select>
+        </div>
+        <div class="col-3">
+          <p>x {{event.price}}€</p>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-6">
+          {{ form_label(form.gender, "¿Niño o Adulto?") }}
+        </div>
+        <div class="col-3">
+          {{ form_widget(form.gender, { 'id': 'gender','attr': {'class': 'form-control'} }) }}
+        </div>
+      </div>
+      <div id="formchildage" class="form-row">
+        <div class="col-6">
+          {{ form_label(form.childage, "Edad del niño") }}
+        </div>
+        <div class="col-3">
+          {{ form_widget(form.childage, { 'id': 'childage','attr': {'class': 'form-control'} }) }}
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-6">
+          {{ form_label(form.disability, "¿Algunos de los participantes tiene diversidad funcional o discapacidad?") }}
+        </div>
+        <div class="col-3">
+          {{ form_widget(form.disability, { 'id': 'disability','attr': {'class': 'form-control'} }) }}
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-6">
+          {{ form_label(form.support, "¿Necesita algún tipod de adaptación o apoyo?") }}
+        </div>
+        <div class="col-3">
+          {{ form_widget(form.support, { 'id': 'support','attr': {'class': 'form-control'} }) }}
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-6">
+          <p class="totalTitle">TOTAL</p>
+        </div>
+        <div class="col-3">
+        </div>
+        <div class="col-3">
+          <p class="totalPrice">{{event.price}}€</p>
+
+        </div>
+      </div>
+        {{ form_widget(form.comprar, { 'label': 'Comprar entrada' ,'id': 'buyTicket','attr': {'class': 'btn'} }) }}
+      {{ form_end(form) }}
     </div>
-  </body>
-</html>
+  </div>
+{% endblock %}

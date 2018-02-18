@@ -23,11 +23,11 @@ acavall_event:
     defaults: { _controller: AcavallBundle:Default:event }
 
 acavall_buy:
-    path:     /buy
+    path:     /buy/{id}/{iduser}
     defaults: { _controller: AcavallBundle:Default:buy }
 
 acavall_ticket:
-    path:     /ticket
+    path:     /ticket/{eventId}/{userId}/{ticketId}
     defaults: { _controller: AcavallBundle:Default:ticket }
 
 acavall_code:

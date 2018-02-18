@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Entrada</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <style media="screen">
+    .contenido-vista {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 5%;
+      background-color: #ededed;
+    }
+
+    body {
+      background-color: #ededed;
+    }
+
+    .entras {
+      text-align: center;
+      font-weight: bold;
+      font-size: 17px;
+    }
+
+    .pago {
+      font-size: 25px;
+      color: green;
+    }
+
+    .entras span {
+      color: green;
+      font-size: 30px;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    table, td, th {
+      border: 5px solid lightgrey;
+    }
+
+    #content {
+      visibility: collapse;
+      background-color: #ededed;
+      width: 60%;
+    }
+
+    </style>
+
+    <div class="entras">
+      <br><br>
+      <p class="pago">Enhorabuena, el pago se ha realizado con exito.&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-ok"></span></p>
+      <p> A continuacion tienes la entrada para el evento</p>
+      <a href="http://localhost:8000/ticket/{{event.id}}/{{user.id}}/{{ticket.id}}">  <button id="cmd" type="button" class="btn btn-primary" style="background-color: #c8c22f; border:none; padding: 15px 70px; font-weight:bold;">Guardar entrada</button></a>
+
+    </div>
+  </body>
+</html>

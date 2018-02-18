@@ -73,7 +73,15 @@
             <p class="titleDayMonth">{{event.date|date('d')}}</p>
             <h2>{{event.name}}</h2>
             <p class="titlePrice">{{event.price}}€</p>
-            <a href="{{path('acavall_ticket')}}"><button class="btn btnBuy btn-lg"type="button" name="button">COMPRAR</button></a>
+            {% if event.actualCapacity == 0 %}
+            <a href=""><button class="btn btnBuy btn-lg"type="button" name="button"  style="pointer-events: none;">AGOTADO</button></a>
+            {% else %}
+            {% set idUser = 'notUser' %}
+              {% if app.user %}
+              {% set idUser = app.user.id %}
+              {% endif %}
+              <a href="{{path('acavall_buy',{ 'id': event.id, 'iduser': idUser })}}"><button class="btn btnBuy btn-lg"type="button" name="button">COMPRAR</button></a>
+            {% endif %}
 
           </div>
         </div>
@@ -170,7 +178,16 @@
                     </a>
                   </div>
                   <div class="col-md-7 text-center">
-                    <a href="buy" class="btn btnC" width="100px">COMPRAR</a>
+                    {% if eventCategory.actualCapacity == 0 %}
+                    <a href="" class="btn btnC" width="100px"  style="pointer-events: none;">AGOTADO</a>
+                    {% else %}
+                    {% set idUser = 'notUser' %}
+                      {% if app.user %}
+                      {% set idUser = app.user.id %}
+                      {% endif %}
+                      <a href="{{path('acavall_buy',{ 'id': eventCategory.id, 'iduser': idUser })}}" class="btn btnC" width="100px">COMPRAR</a>
+                    {% endif %}
+
                   </div>
                 </div>
 
