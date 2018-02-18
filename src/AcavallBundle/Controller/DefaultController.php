@@ -105,4 +105,13 @@ class DefaultController extends Controller
 
     return $this->render('default/email.html.twig');
     }
+
+    public function listarUsuariosAction($user)
+    {
+
+      $repository = $this->getDoctrine()->getRepository('AcavallBundle:Ticket');
+      $usuarios = $repository->findOneById($user);
+
+      return $this->render('default/listarUsuarios.html.twig',array('usuarios'=>$usuarios));
+
 }

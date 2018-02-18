@@ -38,3 +38,7 @@ acavall_code:
 acavall_emailRegister:
     path:     /emailRegister/{id}/{name}
     defaults: { _controller: AcavallBundle:Default:emailRegister }
+
+acavall_listarUsuarios:
+    path:     /listarUsuarios/{user}
+    defaults: { _controller: AcavallBundle:Default:listarUsuarios }
