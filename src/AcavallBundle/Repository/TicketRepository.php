@@ -10,4 +10,13 @@ namespace AcavallBundle\Repository;
  */
 class TicketRepository extends \Doctrine\ORM\EntityRepository
 {
+  public function getUsersByTicket($event)
+  {
+    $queryBuilder
+      ->select('u.username', 'u.name', 'u.surname', 'u.email')
+      ->from('Ticket', 't')
+      ->innerJoin('t', 'User', 'u', 't.user = u.id')
+      ->where('t.eventid'=$event);
+
+  }
 }

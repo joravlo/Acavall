@@ -40,5 +40,5 @@ acavall_emailRegister:
     defaults: { _controller: AcavallBundle:Default:emailRegister }
 
 acavall_listarUsuarios:
-    path:     /listarUsuarios/{user}
+    path:     /listarUsuarios/{event}
     defaults: { _controller: AcavallBundle:Default:listarUsuarios }
