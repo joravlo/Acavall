@@ -1,0 +1,21 @@
+.formHeader {
+  background-color: grey;
+  color: white;
+  text-align: center;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  margin-bottom: 20px;
+}
+
+.container {
+  background-color: white;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.titleNoTickets {
+  text-align: center;
+  color: grey;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}

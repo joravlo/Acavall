@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Comprar de entrada{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('css/ticketList.css')}}">
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+  <div class="container-fluid formHeader">
+    <h1>Asistentes al evento</h1>
+  </div>
+
+  {% if tickets is empty %}
+    <h2 class="titleNoTickets">No hay asistentes a este evento</h2>
+  {% else %}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nº Entrada</th>
+        <th scope="col">DNI</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Discapacidad</th>
+        <th scope="col">Apoyo</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for ticket in tickets %}
+    <tr>
+      <th scope="row">{{ticket.numTicket}}</th>
+      <td>{{ticket.personalDocument}}</td>
+      <td>{{ticket.price}}</td>
+      <td>{{ticket.gender}}</td>
+      <td>{{ticket.childage}}</td>
+      {% if ticket.disability == 0 %}
+        <td>No</td>
+      {% else %}
+        <td>Si</td>
+      {% endif %}
+
+      {% if ticket.support == 0 %}
+        <td>No</td>
+      {% else %}
+        <td>Si</td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</div>
+{% endblock %}

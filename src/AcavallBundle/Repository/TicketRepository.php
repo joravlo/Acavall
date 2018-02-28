@@ -10,4 +10,14 @@ namespace AcavallBundle\Repository;
  */
 class TicketRepository extends \Doctrine\ORM\EntityRepository
 {
+  public function getTicketsByEvent($eventId)
+  {
+    $qb = $this->createQueryBuilder('t')
+    ->andWhere('t.event = :event')
+            ->orderBy('t.numTicket', 'ASC')
+            ->setParameter('event', $eventId)
+            ->getQuery();
+
+            return $qb->getResult();
+  }
 }

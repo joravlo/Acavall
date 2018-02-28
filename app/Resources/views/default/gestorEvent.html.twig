@@ -64,6 +64,9 @@
                   <button id="btnP{{ evento.id }}" type="button" class="btn btn-success btn-sm">Quitar</button>
                 {% endif %}
               </a>
+              <a style="text-decoration:none;" href="{{ path('event_tickets',{ 'eventId': evento.id }) }}">
+                <button type="button" class="btn btn-info btn-sm" style="color:white;">Ver listado</button>
+              </a>
             </div>
           </div>
         </li>

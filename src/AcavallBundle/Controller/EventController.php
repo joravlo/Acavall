@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
 
 use AcavallBundle\Entity\Event;
+use AcavallBundle\Entity\Ticket;
 use AcavallBundle\Form\EventType;
 
 class EventController extends Controller
@@ -89,6 +90,14 @@ class EventController extends Controller
     $em->flush();
 
     return $this->redirectToRoute('acavall_manage');
+  }
+
+  public function ticketsEventAction($eventId)
+  {
+
+      $em = $this->getDoctrine()->getManager();
+      $tickets = $em->getRepository(Ticket::Class)->getTicketsByEvent($eventId);
+      return $this->render('default/ticketList.html.twig',array('tickets'=>$tickets));
   }
 
 
