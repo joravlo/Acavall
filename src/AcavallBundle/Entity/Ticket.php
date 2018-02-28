@@ -22,9 +22,9 @@ class Ticket
     private $id;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="date", type="string", length=255)
+     * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 

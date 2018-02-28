@@ -21,6 +21,7 @@ class EventController extends Controller
 
     if ($form->isSubmitted() && $form->isValid()) {
         $event = $form->getData();
+        $event->setActualCapacity($event->getCapacity());
         $em = $this->getDoctrine()->getManager();
         //Get image to fileType
         /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
@@ -37,7 +38,7 @@ class EventController extends Controller
         $event->setImage($imageFileName);
         $em->persist($event);
         $em->flush();
-        return $this->redirectToRoute('acavall_manage');
+        return $this->redirectToRoute('acavall_gestor');
       }
       return $this->render('default/createEvent.html.twig',array('form'=>$form->createView()));
   }
@@ -75,7 +76,7 @@ class EventController extends Controller
 
         $em->persist($event);
         $em->flush();
-        return $this->redirectToRoute('acavall_manage');
+        return $this->redirectToRoute('acavall_gestor');
       }
       return $this->render('default/updateEvent.html.twig',array('form'=>$form->createView(),"event"=>$event,"urlFoto"=>$file));
   }
